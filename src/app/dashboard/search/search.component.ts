@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { WeatherService } from 'src/app/services/weather.service';
-import {  Subscription } from 'rxjs';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -14,16 +13,18 @@ export class SearchComponent implements OnInit {
 
   searchForm = new FormGroup({
     search:new FormControl('')
+    
   })
 
   constructor(
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private toastrService: ToastrService
   ) { }
 
   ngOnInit() {
 
     
-
+    
 
   }
 
@@ -33,13 +34,17 @@ export class SearchComponent implements OnInit {
     this.searchWeatherSubscription = this.weatherService.getService(search).subscribe(data => {
 
       if (typeof data === 'string' ) {
-        console.log('invalid ')
+        this.toastrService.error('Invalid Zipcode');
         this.searchWeatherSubscription.unsubscribe()
       }
 
       console.log('back from the service', data)
     })
    
+    
+   
+
+    this.searchForm.reset();
   }
 
 
