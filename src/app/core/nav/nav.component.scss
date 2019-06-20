@@ -1,0 +1,28 @@
+
+@import "../../../styles/variables";
+
+.navbar-expand-lg{
+    background-color: $navbar-bg-color;
+    padding: none;
+    box-shadow: 5px 5px 4px #000000;
+    margin-bottom: 1em;
+
+    .navbar-brand {
+        margin: none;
+        padding: none;
+        font-size: 3em;
+        margin-right:-40px;
+    }
+    
+    img {
+        height: 25%;
+        width: 25%;
+        margin: none;
+        padding: none;
+    }
+
+    .nav-link {
+        font-size: 1.4em;
+    }
+}
+

@@ -1,0 +1,42 @@
+@import "../../../styles/variables";
+
+.card {
+    background-color: transparent;
+    margin-top: 10vh;
+    border: none;
+
+
+    .form-control-lg {
+        background-color: inherit;
+        font-weight: bold;
+        color: black;
+        border:none;
+        border-bottom: 1px solid black;
+        margin-top: 2em;
+    
+        
+    }
+
+
+    .btn-dark {
+        background-color:$navbar-bg-color;
+        font-size: 1.4em;
+        margin-top: 2em;
+    }
+
+    #logo {
+        font-size:4em;
+    }
+
+}
+
+
+
+
+
+
+label {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+

@@ -1,0 +1,15 @@
+{
+    "/maps/*": {
+      "target": "https://maps.googleapis.com",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/forecast/*": {
+      "target": "https://api.darksky.net",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+
+  }

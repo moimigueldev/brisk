@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+        <div class="card ">
+            <div class="card-header text-center">
+              <img src="../../../assets/images/logo1.png" alt="">
+              <h1 id="logo">Login</h1>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row ">
+                      <div class="col-sm-6 my-1 mx-auto">
+                        <!-- <label for="staticEmail" class="col-sm-2 col-form-label">Email</label> -->
+                        <div class="">
+                          <input 
+                          type="text" 
+                          class="form-control form-control-lg" 
+                          id="staticEmail" 
+                          placeholder="Enter Email"
+                          formControlName="email"
+                          >
+                        </div>
+                      </div>
+                        </div>
+                        <div class="form-row ">
+                          <div class="col-sm-6 my-1 mx-auto">
+                            <!-- <label for="staticPassword" class="col-sm-2 col-form-label">Password</label> -->
+                            <div class="">
+                              <input 
+                              type="password"
+                              class="form-control form-control-lg" 
+                              id="staticPassword" 
+                              placeholder="Enter Password"
+                              formControlName="password">
+                            </div>
+                          </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-sm-6 my-1 mx-auto">
+                                <button 
+                                type="submit"
+                                class="btn btn-dark btn-lg btn-block" 
+                                (click)="onSubmit()"
+                                [disabled]="!loginForm.valid"
+                                >Submit</button>
+                            </div>
+                          </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
