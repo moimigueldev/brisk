@@ -26,7 +26,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
-   
+    
   ]
 })
 export class DashboardModule { }

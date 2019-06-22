@@ -1,0 +1,34 @@
+.col-md-6   {
+    border: 1px solid green;
+}
+
+#cityName {
+    hr {
+        border: 1px solid white;
+        width: 150px;
+        border-bottom-width: thick;
+        border-radius: 50px;
+    }
+}
+
+#cityWeather {
+    h1 {
+        color: white;
+        font-size: 
+        9em;
+
+        span {
+            color: grey;
+            font-size: 30px;
+            margin-left: 0.3em;
+        }
+    }
+
+    h3 {
+        font-size: 2.5em;
+    }
+
+    #right-border {
+        padding-right:10px;
+    }
+}

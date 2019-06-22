@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { WeatherService } from 'src/app/services/weather.service';
+import {Location} from 'src/app/shared/interfaces/location';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-weather',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherComponent implements OnInit {
 
-  constructor() { }
+  locationSubscription: Subscription;
+  currentWeatherSubscription: Subscription;
+  location;
+  todaysWeather;
+
+
+  
+
+  constructor(
+    private weatherService: WeatherService
+  ) { }
 
   ngOnInit() {
+   this.locationSubscription =  this.weatherService.weather.subscribe(data =>{
+    this.todaysWeather = data;    
+   })
+   this.currentWeatherSubscription =  this.weatherService.location.subscribe(data =>{
+     this.location = data
+     console.log(this.location);
+     
+   })
+  }
+
+  ngOnDestroy() {
+    this.locationSubscription ? this.locationSubscription.unsubscribe() : null;
+    this.currentWeatherSubscription ? this.currentWeatherSubscription.unsubscribe() : null;
   }
 
 }
+ 
