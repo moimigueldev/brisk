@@ -4,6 +4,7 @@ import { WeatherService } from 'src/app/services/weather.service';
 import { ToastrService } from 'ngx-toastr';
 import { CurrentWeather } from 'src/app/shared/interfaces/current-weather';
 import { Subscription } from 'rxjs';
+import { HighsLows } from 'src/app/shared/interfaces/highs-lows';
 
 
 @Component({
@@ -28,26 +29,18 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-
-
-
   }
 
 
 
   onSubmit() {
-
     let search = this.searchForm.value.search;
     this.searchWeatherSubscription = this.weatherService.getService(search).subscribe(data => {
-
       if (typeof data === 'string') {
         this.toastrService.error('Invalid Zipcode');
         this.searchWeatherSubscription.unsubscribe()
-      }
-
-
-
+      } 
+      else {
       const todaysWeather: CurrentWeather = {
         lat: data['latitude'],
         lon: data['longitude'],
@@ -58,13 +51,18 @@ export class SearchComponent implements OnInit {
         humidity: data['currently'].humidity,
         time: data['currently'].time
       }
+      
+      let dailyHighsLows: HighsLows[] = []
 
-     
+      data['daily'].data.forEach(el => {
+        dailyHighsLows.push({date: new Date(el.time * 1000), high: el.temperatureHigh, low: el.temperatureLow })
+      });
+
+      this.weatherService.emitWeather(todaysWeather, dailyHighsLows)
+    }
+    });//end of subscription
 
 
-      this.weatherService.emitWeather(todaysWeather)
-
-    })
     this.searchForm.reset();
   }
 

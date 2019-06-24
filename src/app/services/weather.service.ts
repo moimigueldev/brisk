@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 import {Location} from '../shared/interfaces/location';
 import { CurrentWeather } from '../shared/interfaces/current-weather';
+import { HighsLows } from '../shared/interfaces/highs-lows';
 
 
 @Injectable({
@@ -17,6 +18,7 @@ export class WeatherService {
 
   weather = new Subject();
   location = new Subject<Location>();
+  tempHighsLows = new Subject<HighsLows[]>();
 
 
 
@@ -56,8 +58,11 @@ export class WeatherService {
   }//end of getService()
 
 
-  emitWeather(todaysWeather: CurrentWeather) {
-    this.weather.next(todaysWeather)
+  emitWeather(todaysWeather: CurrentWeather, dailyHighsLows: HighsLows[]) {
+
+    
+    this.weather.next(todaysWeather);
+    this.tempHighsLows.next(dailyHighsLows)
   }
 
 

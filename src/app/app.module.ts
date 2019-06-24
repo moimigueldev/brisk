@@ -18,7 +18,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     CoreModule,
     AppRoutingModule,
     AuthModule,
-    DashboardModule
+    DashboardModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

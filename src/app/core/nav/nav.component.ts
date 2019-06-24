@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  today: number = Date.now();
+  today = new Date();
   
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.today)
+
   }
 
 }

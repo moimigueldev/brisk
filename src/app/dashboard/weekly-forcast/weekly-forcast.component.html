@@ -1,3 +1,17 @@
-<p>
-  weekly-forcast works!
-</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-12" *ngIf="HighsLows.length == 8">
+      <canvas
+  baseChart
+  [chartType]="'line'"
+  [datasets]="chartDatasets"
+  [labels]="chartLabels"
+  [options]="chartOptions"
+  [legend]="true"
+  ></canvas>
+  
+    </div>
+  </div>
+</div>
+

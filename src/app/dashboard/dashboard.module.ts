@@ -9,7 +9,8 @@ import { WeeklyForcastComponent } from './weekly-forcast/weekly-forcast.componen
 import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ChartsModule,
+    ToastrModule.forRoot(),
+
     
   ]
+
 })
 export class DashboardModule { }
