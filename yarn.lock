@@ -4474,6 +4474,13 @@ ng2-charts@^2.3.0:
     lodash "^4.17.11"
     tslib "^1.9.0"
 
+ngx-skycons@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/ngx-skycons/-/ngx-skycons-1.2.2.tgz#bd5869b26092758748c559dbb1b6e5f2f5ca9e5c"
+  integrity sha512-KREnqIJjh2pvSEQjUQ+W66ty+gP56WMrlgqNnwIqF+KKkTtUziysBH2lcfGLju6+ftohaIK6QyAKzoK1snF50A==
+  dependencies:
+    tslib "^1.9.0"
+
 ngx-toastr@^10.0.4:
   version "10.0.4"
   resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-10.0.4.tgz#cbc61b8d67d748194ea7a28542b01e39bf1fc6c2"

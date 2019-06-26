@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CurrentWeather } from 'src/app/shared/interfaces/current-weather';
 import { Subscription } from 'rxjs';
 import { HighsLows } from 'src/app/shared/interfaces/highs-lows';
+import { HumidityWind } from 'src/app/shared/interfaces/humidity-wind';
+import { WeeklyForcast } from 'src/app/shared/interfaces/weekly-forcast';
 
 
 @Component({
@@ -41,6 +43,8 @@ export class SearchComponent implements OnInit {
         this.searchWeatherSubscription.unsubscribe()
       } 
       else {
+
+      //TODAYSWEATHER  
       const todaysWeather: CurrentWeather = {
         lat: data['latitude'],
         lon: data['longitude'],
@@ -52,13 +56,28 @@ export class SearchComponent implements OnInit {
         time: data['currently'].time
       }
       
+      //HIGHLOWS CHART
       let dailyHighsLows: HighsLows[] = []
+      //HUMIDITYWIND
+      let dailyHumWind: HumidityWind[] = []
+      //WEEKLYFORCAST
+      let weeklyForcast: WeeklyForcast[] = [];
 
       data['daily'].data.forEach(el => {
         dailyHighsLows.push({date: new Date(el.time * 1000), high: el.temperatureHigh, low: el.temperatureLow })
+        dailyHumWind.push({date: new Date(el.time * 1000), hum: el.humidity * 100, cloudCover: el.cloudCover * 100 })
+        weeklyForcast.push({day: new Date(el.time * 1000) ,summary: el.summary, tempHigh: el.apparentTemperatureHigh, icon: el.icon })
       });
 
-      this.weatherService.emitWeather(todaysWeather, dailyHighsLows)
+
+
+
+      this.weatherService.emitWeather(
+        todaysWeather, 
+        dailyHighsLows, 
+        dailyHumWind,
+        weeklyForcast
+        )
     }
     });//end of subscription
 

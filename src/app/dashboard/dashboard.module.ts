@@ -5,20 +5,22 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WeatherComponent } from './weather/weather.component';
 import { TwitterComponent } from './twitter/twitter.component';
-import { WeeklyForcastComponent } from './weekly-forcast/weekly-forcast.component';
+import { ForcastChartComponent } from './forcast-chart/forcast-chart.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ChartsModule} from 'ng2-charts';
-
+import { WeeklyForcastComponent } from './weekly-forcast/weekly-forcast.component';
+import { SkyconsModule } from 'ngx-skycons';
 @NgModule({
   declarations: [
     DashboardComponent,
     WeatherComponent,
     TwitterComponent,
-    WeeklyForcastComponent,
-    SearchComponent
+    ForcastChartComponent,
+    SearchComponent,
+    WeeklyForcastComponent
   ],
   imports: [
     CommonModule,
@@ -28,8 +30,7 @@ import {ChartsModule} from 'ng2-charts';
     BrowserAnimationsModule,
     ChartsModule,
     ToastrModule.forRoot(),
-
-    
+    SkyconsModule
   ]
 
 })

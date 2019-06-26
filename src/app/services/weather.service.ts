@@ -6,6 +6,8 @@ import { Subject } from 'rxjs';
 import {Location} from '../shared/interfaces/location';
 import { CurrentWeather } from '../shared/interfaces/current-weather';
 import { HighsLows } from '../shared/interfaces/highs-lows';
+import { HumidityWind } from '../shared/interfaces/humidity-wind';
+import { WeeklyForcast } from '../shared/interfaces/weekly-forcast';
 
 
 @Injectable({
@@ -19,6 +21,8 @@ export class WeatherService {
   weather = new Subject();
   location = new Subject<Location>();
   tempHighsLows = new Subject<HighsLows[]>();
+  humidityWind = new Subject<HumidityWind[]>();
+  weeklyForcast = new Subject<WeeklyForcast[]>();
 
 
 
@@ -35,7 +39,7 @@ export class WeatherService {
             return 'invalid'
           }else {
           
-
+ 
 
           let location: Location = {
             city: res['results']["0"].address_components[1].long_name,
@@ -58,11 +62,18 @@ export class WeatherService {
   }//end of getService()
 
 
-  emitWeather(todaysWeather: CurrentWeather, dailyHighsLows: HighsLows[]) {
+  emitWeather(
+    todaysWeather: CurrentWeather, 
+    dailyHighsLows: HighsLows[], 
+    dailyHumWind: HumidityWind[],
+    weeklyForcast: WeeklyForcast[]
+    ) {
 
     
     this.weather.next(todaysWeather);
     this.tempHighsLows.next(dailyHighsLows)
+    this.humidityWind.next(dailyHumWind)
+    this.weeklyForcast.next(weeklyForcast)
   }
 
 

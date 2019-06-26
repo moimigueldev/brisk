@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-weekly-forcast',
@@ -9,55 +8,32 @@ import { Subscription } from 'rxjs';
 })
 export class WeeklyForcastComponent implements OnInit {
 
-  days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  HighsLows = [];
-  HighsLowsSubscription: Subscription;
+  weeklyForcastData = [];
 
-  chartLabels;
-  chartOptions = {
-    responsive: true
-  };
-  chartDatasets;
+  days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   constructor(
     private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
-    this.HighsLowsSubscription =  this.weatherService.tempHighsLows.subscribe(data => {
-      this.HighsLows = data;
-      this.showGraph();
-    })
-  }
+    this.weatherService.weeklyForcast.subscribe(data => {
+      this.weeklyForcastData = data;
+      this.weeklyForcastData.pop();
+      this.weeklyForcastData.pop();
+      this.weeklyForcastData.pop();
 
-  showGraph() {
-    let chartLabelsData = [];
-    let highsDatasets = [];
-    let lowDatasets = [];
-
-    this.HighsLows.forEach(el => {
+      let daysData = [];
       
-      chartLabelsData.push(this.days[el.date.getDay()]);
-      highsDatasets.push(el.high);
-      lowDatasets.push(el.low);
+  
+      this.weeklyForcastData.forEach(el => {
+        el.day = this.days[el.day.getDay()];
+      }); 
+
+      console.log(this.weeklyForcastData)
+
     });
-    this.chartLabels = chartLabelsData;
-
-    this.chartDatasets = [{
-      label: 'Highs',
-      fill: false,
-      data: highsDatasets
-    },
-    {
-      label: 'lows',
-      fill: false,
-      data: lowDatasets
-    }];
-
+    
   }
 
-  ngOnDestroy() {
-    this.HighsLowsSubscription? this.HighsLowsSubscription.unsubscribe() : null;
-  }
 }
- 

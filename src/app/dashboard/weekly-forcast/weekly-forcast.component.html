@@ -1,17 +1,18 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 col-sm-12" *ngIf="HighsLows.length == 8">
-      <canvas
-  baseChart
-  [chartType]="'line'"
-  [datasets]="chartDatasets"
-  [labels]="chartLabels"
-  [options]="chartOptions"
-  [legend]="true"
-  ></canvas>
-  
+<div class="row justify-content-center" *ngIf="weeklyForcastData.length == 5">
+  <div class="col-sm-2  col-md-3 m-0 m-0" *ngFor="let card of weeklyForcastData; index as i">
+    <div class="card" style="width: 18rem;">
+        <sc-skycons class='weather-icons' [weather]="card.icon" [color]="'white'"></sc-skycons>
+      <!-- <img class="card-img-top img-fluid text-center mx-auto" src="../../../assets/images/weather/partly-cloudy-day.png" alt="Card image cap"> -->
+      <div class="card-body">
+        <h1 class="text-right">{{card.day}}</h1>
+        <h3 class="text-right">{{card.tempHigh | number : '1.0-0'}} °F</h3>
+        <h4 class="text-muted text-center">{{card.summary}}</h4>
+      </div>
     </div>
   </div>
+  
+ 
+  
+  
+  
 </div>
-

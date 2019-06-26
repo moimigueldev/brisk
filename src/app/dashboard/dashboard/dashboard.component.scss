@@ -1,6 +1,5 @@
 #dashboard-container {
     // border: 10px solid black;
-    height: 800px;
     border-radius: 30px;
 }
 
@@ -11,14 +10,11 @@
     
 }
 
+#weekly-forcast {
+    overflow: hidden;
+}
+
 .col-12 {
     height:400px;
 }
 
-.col-8{
-    height: 400px;
-}
-
-.col-4{
-    height: 400px;
-}
