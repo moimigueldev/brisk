@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GetIPAdressService } from 'src/app/services/get-ipadress.service';
-import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
   selector: 'app-dashboard',
