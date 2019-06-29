@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-twitter',
@@ -7,7 +8,10 @@ import { WeatherService } from 'src/app/services/weather.service';
   styleUrls: ['./twitter.component.scss']
 })
 export class TwitterComponent implements OnInit {
-  
+
+
+  humCloudSubscription: Subscription;
+
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   humWindData = [];
   chartOptions = {
@@ -21,8 +25,7 @@ export class TwitterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.weatherService.humidityWind.subscribe(data => {
-      
+   this.humCloudSubscription =  this.weatherService.humidityWind.subscribe(data => {
       this.humWindData = data;
       this.showGraph();
     })
@@ -53,7 +56,9 @@ export class TwitterComponent implements OnInit {
 
   }
 
- 
+ ngOnDestroy() {
+  this.humCloudSubscription ? this.humCloudSubscription.unsubscribe() : null;
+ }
 
 
 }

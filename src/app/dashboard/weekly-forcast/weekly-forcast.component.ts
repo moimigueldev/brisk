@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-weekly-forcast',
@@ -10,6 +11,8 @@ export class WeeklyForcastComponent implements OnInit {
 
   weeklyForcastData = [];
 
+  weatherForcastSubscription:Subscription;
+
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   constructor(
@@ -17,23 +20,29 @@ export class WeeklyForcastComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.weatherService.weeklyForcast.subscribe(data => {
+    this.weatherForcastSubscription =   this.weatherService.weeklyForcast.subscribe(data => {
       this.weeklyForcastData = data;
-      this.weeklyForcastData.pop();
-      this.weeklyForcastData.pop();
-      this.weeklyForcastData.pop();
+      
 
       let daysData = [];
       
+      console.log('data', data)
   
       this.weeklyForcastData.forEach(el => {
+        
         el.day = this.days[el.day.getDay()];
       }); 
 
-      console.log(this.weeklyForcastData)
-
+      this.weeklyForcastData.pop();
+      this.weeklyForcastData.pop();
+      this.weeklyForcastData.pop();
     });
     
   }
+
+  ngOnDestroy() {
+    this.weatherForcastSubscription ? this.weatherForcastSubscription.unsubscribe() : null;
+  }
+
 
 }

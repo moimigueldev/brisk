@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { HighsLows } from 'src/app/shared/interfaces/highs-lows';
 import { HumidityWind } from 'src/app/shared/interfaces/humidity-wind';
 import { WeeklyForcast } from 'src/app/shared/interfaces/weekly-forcast';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
@@ -27,16 +29,22 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private weatherService: WeatherService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.route.children[0]? this.onSubmit() : false
   }
 
 
 
   onSubmit() {
-    let search = this.searchForm.value.search;
+    
+    
+    // let search = this.searchForm.value.search;
+    let search = this.route.children[0]? this.route.children[0].params['_value'].zipcode : this.searchForm.value.search;
     this.searchWeatherSubscription = this.weatherService.getService(search).subscribe(data => {
       if (typeof data === 'string') {
         this.toastrService.error('Invalid Zipcode');
@@ -78,11 +86,15 @@ export class SearchComponent implements OnInit {
         dailyHumWind,
         weeklyForcast
         )
+
+
+
     }
     });//end of subscription
 
 
     this.searchForm.reset();
+    
   }
 
 

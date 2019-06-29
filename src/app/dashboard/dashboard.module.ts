@@ -24,13 +24,16 @@ import { SkyconsModule } from 'ngx-skycons';
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
+    // DashboardRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ChartsModule,
     ToastrModule.forRoot(),
-    SkyconsModule
+    SkyconsModule,
+  ],
+  exports: [
+    SearchComponent
   ]
 
 })

@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
     // this.getIpService.getIpAddressService();
 
     
-  }
+  } 
 
 }
  

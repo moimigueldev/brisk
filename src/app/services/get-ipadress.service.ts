@@ -9,6 +9,7 @@ import { WeeklyForcast } from '../shared/interfaces/weekly-forcast';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +22,21 @@ export class GetIPAdressService {
   constructor(
     private http: HttpClient,
     private weatherService: WeatherService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
  
   getIpAddressService() {
+
+    
+
     console.log('getting Ip address')
     return this.http.get(this.ipAdressURL).subscribe(data => {
       console.log('data', Number(data['postal_code']))
-      this.weatherService.getService(data['postal_code']).subscribe(data => {
+
+      this.searchWeatherSubscription = this.weatherService.getService(data['postal_code']).subscribe(data => {
         if (typeof data === 'string') {
           this.toastrService.error('Invalid Zipcode');
           this.searchWeatherSubscription.unsubscribe()
@@ -78,6 +85,10 @@ export class GetIPAdressService {
 
   }//end of getIpAdressService()
 
+
+  ngOnDestroy() {
+    this.searchWeatherSubscription ? this.searchWeatherSubscription.unsubscribe() : null;
+  }
 
 
 
