@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   googleMapsGeocodeKey: 'AIzaSyBhARFMZRI5yQu85znM1Xh5LEGvXhzHEa8',
-  darkSkyKey: '1d5b5fdbcf2ee1cc9e236214b860607f'
+  darkSkyKey: '1d5b5fdbcf2ee1cc9e236214b860607f',
+  IPURL: 'https://json.geoiplookup.io/'
 };
 
 /*

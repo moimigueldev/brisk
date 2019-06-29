@@ -62,6 +62,8 @@ export class WeatherService {
   }//end of getService()
 
 
+
+
   emitWeather(
     todaysWeather: CurrentWeather, 
     dailyHighsLows: HighsLows[], 
@@ -76,6 +78,39 @@ export class WeatherService {
     this.weeklyForcast.next(weeklyForcast)
   }
 
+  getServiceOnInit(zipcode: number) {
+
+    console.log('getServiceonInit')
+
+    if (zipcode) {
+       return this.http.get(`/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`).pipe(
+        switchMap(res => {
+
+          if (res['status'] === "ZERO_RESULTS") {
+            return 'invalid'
+          }else {
+          
+ 
+
+          let location: Location = {
+            city: res['results']["0"].address_components[1].long_name,
+            state: res['results']["0"].address_components[2].short_name
+          }
+
+           this.location.next(location) 
+
+          let coordinates = {
+            lat: res['results'][0].geometry.location.lat,
+            lon: res['results'][0].geometry.location.lng
+          }
+
+          return this.http.get(`/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`)
+        }
+        })
+        
+       )
+    }//end of if
+  }//end of getService()
 
 
 }

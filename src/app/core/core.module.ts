@@ -4,6 +4,7 @@ import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { WeatherService } from '../services/weather.service';
 import { HttpClientModule } from '@angular/common/http';
+import { GetIPAdressService } from '../services/get-ipadress.service';
 
 @NgModule({
   declarations: [NavComponent],
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavComponent
   ],
   providers: [
-    WeatherService
+    WeatherService,
+    GetIPAdressService
   ]
 })
 export class CoreModule { }
