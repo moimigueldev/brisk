@@ -23,8 +23,6 @@ export class GetIPAdressService {
     private http: HttpClient,
     private weatherService: WeatherService,
     private toastrService: ToastrService,
-    private route: ActivatedRoute,
-    private router: Router
   ) { }
 
  
@@ -68,9 +66,6 @@ export class GetIPAdressService {
           weeklyForcast.push({day: new Date(el.time * 1000) ,summary: el.summary, tempHigh: el.apparentTemperatureHigh, icon: el.icon })
         });
   
-  
-  
-  
         this.weatherService.emitWeather(
           todaysWeather, 
           dailyHighsLows, 
@@ -80,16 +75,11 @@ export class GetIPAdressService {
         }
       }) 
     })
-    
-    
-
   }//end of getIpAdressService()
 
 
   ngOnDestroy() {
     this.searchWeatherSubscription ? this.searchWeatherSubscription.unsubscribe() : null;
   }
-
-
 
 }

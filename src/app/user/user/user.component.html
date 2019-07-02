@@ -1,5 +1,5 @@
-<div class="conatainer">
-  <div class="row">
+<div class="container">
+  <div class="row mb-5">
     <div class="col-md-3 mx-auto">
       <form [formGroup]="searchForm" (submit)="onSubmit()">
         <input 
@@ -9,9 +9,34 @@
         placeholder="ZIPCODE"
         maxlength="5"
         >
-      </form>
-      
-      
+      </form> 
     </div>
   </div>
+
+  <div class="row" *ngFor="let city of cities">
+    <div class="col-md-12 my-5">
+      <div class="card user-card" > 
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <h1 class="ml-5">{{city.temp}} F</h1>
+              <p class="text-muted">Rainy with a chance of meatballs</p>
+            </div>
+            <div class="col-md-8">
+              <h1 class="text-right">Lakeville, MN</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button class="btn btn-outline-success btn-lg  ml-5">View</button>
+            </div>
+            <div class="col-md-6  text-right">
+              <button class="btn btn-outline-danger btn-lg ">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </div>

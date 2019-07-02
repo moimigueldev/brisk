@@ -1,0 +1,11 @@
+@import "../../../styles/variables.scss";
+
+.card {
+    border-radius: 20px;
+    background: rgb(142, 202, 1);
+    // background: linear-gradient(0.25turn, $primary-color, $secondary-color, $light-blue);
+    .user-card {
+        border: 2px solid rgb(142, 202, 1);
+        
+    }
+}

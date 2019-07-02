@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -15,16 +16,20 @@ export class UserComponent implements OnInit {
 
   })
 
+  cities = [];
+
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
 
+    this.cities = this.userService.getCities()
     
-   
+    console.log('cities', this.cities)
 
   }
 
