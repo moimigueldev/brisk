@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GetIPAdressService } from '../services/get-ipadress.service';
 import { UserService } from '../services/user.service';
 import { FirebaseModule } from './firebase.module';
+import { FirebaseAuthService } from '../services/firebase-auth.service';
 
 @NgModule({
   declarations: [NavComponent],
@@ -22,7 +23,8 @@ import { FirebaseModule } from './firebase.module';
   providers: [
     WeatherService,
     GetIPAdressService,
-    UserService
+    UserService,
+    FirebaseAuthService
   ]
 })
 export class CoreModule { }

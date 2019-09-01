@@ -8,13 +8,13 @@ export const environment = {
   darkSkyKey: '1d5b5fdbcf2ee1cc9e236214b860607f',
   IPURL: 'https://json.geoiplookup.io/',
   firebase: {
-    apiKey: "AIzaSyDuKjkZiH4P9QIf8h8H2UpXf-TfuVAcsII",
-    authDomain: "brisk-16b4f.firebaseapp.com",
-    databaseURL: "https://brisk-16b4f.firebaseio.com",
-    projectId: "brisk-16b4f",
-    storageBucket: "brisk-16b4f.appspot.com",
-    messagingSenderId: "804413478449",
-    appId: "1:804413478449:web:ec417a9108d28f18"
+    apiKey: "AIzaSyCpvf9CLqManWOAOjXrMn5tAEh7MmtKEPk",
+    authDomain: "brisk-94282.firebaseapp.com",
+    databaseURL: "https://brisk-94282.firebaseio.com",
+    projectId: "brisk-94282",
+    storageBucket: "",
+    messagingSenderId: "622899041188",
+    appId: "1:622899041188:web:b12fb2e1d27c876a"
   }
 };
 

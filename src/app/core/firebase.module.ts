@@ -7,6 +7,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {NgxAuthFirebaseUIModule} from 'ngx-auth-firebaseui';
 
+
 @NgModule({
   imports: [
     CommonModule,

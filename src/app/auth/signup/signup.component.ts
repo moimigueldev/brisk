@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -15,13 +16,15 @@ export class SignupComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
 
-  constructor() { }
+  constructor(private fas: FirebaseAuthService) { }
 
   ngOnInit() {
+    
   }
 
-  onSubmit() {
-    console.log(this.signupForm)
+  onSubmit() { 
+    this.fas.signUp(this.signupForm.value);
+    this.signupForm.reset()
   }
 
 }

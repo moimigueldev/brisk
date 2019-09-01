@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,23 +9,19 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  // profileForm = new FormGroup({
-  //   firstName: new FormControl(''),
-  //   lastName: new FormControl(''),
-  // });
-
+  
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
 
-  constructor() { }
+  constructor(private fas: FirebaseAuthService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    console.log(this.loginForm)
+    this.fas.signIn(this.loginForm.value);
   }
 
 }

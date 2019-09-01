@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {map, tap, filter} from 'rxjs/operators';
 import { WeatherService } from './weather.service';
 import { CurrentWeather } from '../shared/interfaces/current-weather';
 import { HighsLows } from '../shared/interfaces/highs-lows';
@@ -9,7 +8,6 @@ import { WeeklyForcast } from '../shared/interfaces/weekly-forcast';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -27,12 +25,7 @@ export class GetIPAdressService {
 
  
   getIpAddressService() {
-
-    
-
-    console.log('getting Ip address')
     return this.http.get(this.ipAdressURL).subscribe(data => {
-      console.log('data', Number(data['postal_code']))
 
       this.searchWeatherSubscription = this.weatherService.getService(data['postal_code']).subscribe(data => {
         if (typeof data === 'string') {
