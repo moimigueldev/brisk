@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from './user/user.module';
 import { WeatherCardComponent } from './user/weather-card/weather-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -22,7 +23,8 @@ import { WeatherCardComponent } from './user/weather-card/weather-card.component
     AppRoutingModule,
     AuthModule,
     DashboardModule,
-    UserModule
+    UserModule,
+    BrowserAnimationsModule
      
   ],
   providers: [],

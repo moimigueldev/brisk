@@ -6,6 +6,7 @@ import { WeatherService } from '../services/weather.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GetIPAdressService } from '../services/get-ipadress.service';
 import { UserService } from '../services/user.service';
+import { FirebaseModule } from './firebase.module';
 
 @NgModule({
   declarations: [NavComponent],
@@ -13,6 +14,7 @@ import { UserService } from '../services/user.service';
     CommonModule,
     RouterModule,
     HttpClientModule,
+    FirebaseModule,
   ],
   exports: [
     NavComponent
