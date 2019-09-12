@@ -11,11 +11,27 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/dashboard" routerLinkActive="active-link" >Dashboard </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login" routerLinkActive="active-link" >Login</a>
+      <li class="nav-item" *ngIf="!isLoggedIn">
+        <a 
+        class="nav-link" 
+        routerLink="/login" 
+        routerLinkActive="active-link" 
+        
+        >Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/signup" routerLinkActive="active-link" >Signup</a>
+        <a class="nav-link"
+         routerLink="/signup"
+          routerLinkActive="active-link"
+          *ngIf="!isLoggedIn"
+           >Signup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+          (click)="signout()"
+          routerLinkActive="active-link"
+          *ngIf="isLoggedIn"
+          >Logout</a>
       </li>
       
     </ul>
@@ -23,6 +39,13 @@
     <div class="mx-auto h2" style="color: white"> 
       <span class="h1">{{today | date:'MMM'}}, </span> {{today | date:'d'}}th {{today | date:'y'}}
     </div>
-    <div class="mr-5 ml-5 h5" style="color: white" id="userName">Eric Spencer</div>
+    <div 
+    class="mr-5 ml-5 h5" 
+    style="color: white" 
+    id="userName"
+    *ngIf="isLoggedIn"
+    >{{user.firstName}} {{user.lastName}}</div>
+
+
   </div>
 </nav> 

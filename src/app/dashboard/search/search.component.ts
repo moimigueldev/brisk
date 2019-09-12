@@ -8,6 +8,7 @@ import { HighsLows } from 'src/app/shared/interfaces/highs-lows';
 import { HumidityWind } from 'src/app/shared/interfaces/humidity-wind';
 import { WeeklyForcast } from 'src/app/shared/interfaces/weekly-forcast';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -31,7 +32,8 @@ export class SearchComponent implements OnInit {
     private weatherService: WeatherService,
     private toastrService: ToastrService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -42,7 +44,7 @@ export class SearchComponent implements OnInit {
 
   onSubmit() {
     
-    
+    this.spinner.show();
     // let search = this.searchForm.value.search;
     let search = this.route.children[0]? this.route.children[0].params['_value'].zipcode : this.searchForm.value.search;
     this.searchWeatherSubscription = this.weatherService.getService(search).subscribe(data => {
@@ -72,9 +74,9 @@ export class SearchComponent implements OnInit {
       let weeklyForcast: WeeklyForcast[] = [];
 
       data['daily'].data.forEach(el => {
-        dailyHighsLows.push({date: new Date(el.time * 1000), high: el.temperatureHigh, low: el.temperatureLow })
+        dailyHighsLows.push({date: new Date(el.time * 1000), high: el.temperatureHigh, low: el.temperatureLow, zipcode: search })
         dailyHumWind.push({date: new Date(el.time * 1000), hum: el.humidity * 100, cloudCover: el.cloudCover * 100 })
-        weeklyForcast.push({day: new Date(el.time * 1000) ,summary: el.summary, tempHigh: el.apparentTemperatureHigh, icon: el.icon })
+        weeklyForcast.push({day: new Date(el.time * 1000) ,summary: el.summary, tempHigh: el.apparentTemperatureHigh, icon: el.icon})
       });
 
 

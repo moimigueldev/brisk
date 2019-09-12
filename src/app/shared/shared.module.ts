@@ -4,6 +4,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { SkyconsModule } from 'ngx-skycons';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [],
@@ -12,9 +13,10 @@ import { SkyconsModule } from 'ngx-skycons';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ChartsModule,
-    SkyconsModule
+    SkyconsModule,
+    NgxSpinnerModule
   ],
-  exports: [ChartsModule, SkyconsModule]
+  exports: [ChartsModule, SkyconsModule, NgxSpinnerModule]
   
 })
 export class SharedModule { }

@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-sm-12" *ngIf="HighsLows.length == 8">
@@ -11,7 +12,12 @@
   ></canvas>
   
     </div>
-    <button *ngIf="HighsLows.length == 8" class="btn btn-outline-primary ml-auto mb-5 btn-lg">Save</button>
+    <button 
+    *ngIf="HighsLows.length == 8" 
+    class="btn btn-outline-primary 
+    ml-auto mb-5 btn-lg" 
+    (click)="saveCity()" 
+    >Save</button>
   </div>
 </div>
 

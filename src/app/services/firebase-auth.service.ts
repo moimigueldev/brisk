@@ -27,7 +27,7 @@ export class FirebaseAuthService {
     this.authState = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          this.getUserData(user.uid);
+          this.getUserData();
           return this.afs.doc(`users/${user.uid}`).valueChanges()
         } else {
           return of(null)
@@ -88,14 +88,13 @@ export class FirebaseAuthService {
     })
   }
 
- getUserData(userId) {
-  this.db.doc(`users/${userId}`).valueChanges().subscribe(res => {
-    this.user = res;
-    return this.user;
-  });
-  
-  
-     
+ getUserData() {
+    return this.db.doc(`users/${this.afAuth.auth.currentUser.uid}`).valueChanges().pipe(
+      map(res => {
+        this.user = res;
+        return res
+      })
+    )
 }
 
 
@@ -106,6 +105,35 @@ export class FirebaseAuthService {
       this.user = null;
       this.router.navigate(['login']);
     })
+  }
+
+  addZipcode(zipcode) {
+    console.log('this is the zipcode', this.user);
+
+    this.db.collection('users').doc(this.user.uid).update({
+        cities: [...this.user.cities, zipcode]
+      }).then(res => console.log("res", res)
+      ).catch(err => console.log("err", err)
+      )
+
+
+
+
+    // this.db.collection('users').doc(`${this.user.uid}/cities`).update({
+    //   cities: [...this.user.cities, zipcode]
+    // }).then(res => console.log("res", res)
+    // ).catch(err => console.log("err", err)
+    // )
+
+
+
+    // this.db.collection('users').doc('mMrRkga5ggTdt9ROlbdysIa0ltL2').collection('zipcodes').add({123015: 'asd'}).then(res => console.log('res', res))
+
+  //   firebase.firestore()
+  // .collection('proprietary')
+  // .doc(docID)
+  // .collection('sharedWith')
+  // .add({ who: "third@test.com", when: new Date() })
   }
  
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,19 +20,26 @@ export class UserComponent implements OnInit {
 
   cities = [];
 
+  userSubscription: Subscription;
+
+  user;
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private fas: FirebaseAuthService
   ) { }
 
   ngOnInit() {
+    this.userSubscription = this.fas.getUserData().subscribe(res => {
+      this.cities = res['cities'];
+      this.user = res;
+      console.log('this user', this.cities)
+    })
 
-    this.cities = this.userService.getCities()
-    
-    console.log('cities', this.cities)
-
+  
   }
 
   onSubmit() {
@@ -38,6 +47,12 @@ export class UserComponent implements OnInit {
 
     this.router.navigate([`/dashboard/${search}`])
 
+  }
+
+  ngOnDestroy() {
+    console.log('onDestroy');
+
+    this.userSubscription? this.userSubscription.unsubscribe(): null;
   }
 
 }

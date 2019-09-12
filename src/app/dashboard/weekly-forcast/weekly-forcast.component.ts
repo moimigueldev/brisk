@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Subscription } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-weekly-forcast',
@@ -16,17 +17,16 @@ export class WeeklyForcastComponent implements OnInit {
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   constructor(
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
   ) { }
 
   ngOnInit() {
     this.weatherForcastSubscription =   this.weatherService.weeklyForcast.subscribe(data => {
       this.weeklyForcastData = data;
-      
+ 
 
       let daysData = [];
-      
-      console.log('data', data)
+
   
       this.weeklyForcastData.forEach(el => {
         

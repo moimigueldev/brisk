@@ -8,6 +8,7 @@ import { CurrentWeather } from '../shared/interfaces/current-weather';
 import { HighsLows } from '../shared/interfaces/highs-lows';
 import { HumidityWind } from '../shared/interfaces/humidity-wind';
 import { WeeklyForcast } from '../shared/interfaces/weekly-forcast';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Injectable({
@@ -27,7 +28,8 @@ export class WeatherService {
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private spinner: NgxSpinnerService
   ) { } 
 
   getService(zipcode: number) {
@@ -36,7 +38,9 @@ export class WeatherService {
         switchMap(res => {
 
           if (res['status'] === "ZERO_RESULTS") {
-            return 'invalid'
+            this.spinner.hide();
+            return 'invalid';
+            
           }else {
           
  
@@ -71,16 +75,14 @@ export class WeatherService {
     weeklyForcast: WeeklyForcast[]
     ) {
 
-    
+    this.spinner.hide();
     this.weather.next(todaysWeather);
-    this.tempHighsLows.next(dailyHighsLows)
-    this.humidityWind.next(dailyHumWind)
-    this.weeklyForcast.next(weeklyForcast)
+    this.tempHighsLows.next(dailyHighsLows);
+    this.humidityWind.next(dailyHumWind);
+    this.weeklyForcast.next(weeklyForcast);
   }
 
   getServiceOnInit(zipcode: number) {
-
-    console.log('getServiceonInit')
 
     if (zipcode) {
        return this.http.get(`/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`).pipe(

@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import {Location} from 'src/app/shared/interfaces/location';
 import { Subscription } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-weather',
@@ -19,7 +20,7 @@ export class WeatherComponent implements OnInit {
   
 
   constructor(
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
   ) { }
 
   ngOnInit() {
