@@ -3,6 +3,7 @@ import { WeatherService } from 'src/app/services/weather.service';
 import { Subscription } from 'rxjs';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-forcast-chart',
@@ -24,11 +25,12 @@ export class ForcastChartComponent implements OnInit {
   constructor(
     private weatherService: WeatherService,
     private fas: FirebaseAuthService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
 
-
+    
   
     this.HighsLowsSubscription =  this.weatherService.tempHighsLows.subscribe(data => {
       this.HighsLows = data;
@@ -63,7 +65,8 @@ export class ForcastChartComponent implements OnInit {
   }
 
   saveCity() {
-    this.fas.addZipcode(this.HighsLows[0].zipcode);
+    
+    this.fas.addZipcode(this.HighsLows[0].zipcode || this.route.children[0].params['_value'].zipcode);
   }
 
   ngOnDestroy() {

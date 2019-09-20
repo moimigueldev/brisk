@@ -27,6 +27,7 @@ export class FirebaseAuthService {
     this.authState = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
+         
           this.getUserData();
           return this.afs.doc(`users/${user.uid}`).valueChanges()
         } else {
@@ -89,12 +90,18 @@ export class FirebaseAuthService {
   }
 
  getUserData() {
-    return this.db.doc(`users/${this.afAuth.auth.currentUser.uid}`).valueChanges().pipe(
+   console.log('getting user data', this.afAuth.auth.currentUser.uid)
+     return this.db.doc(`users/${this.afAuth.auth.currentUser.uid}`).valueChanges().pipe(
       map(res => {
+        
         this.user = res;
         return res
-      })
+       })
     )
+
+
+    
+
 }
 
 
@@ -110,11 +117,13 @@ export class FirebaseAuthService {
   addZipcode(zipcode) {
     console.log('this is the zipcode', this.user);
 
-    this.db.collection('users').doc(this.user.uid).update({
-        cities: [...this.user.cities, zipcode]
-      }).then(res => console.log("res", res)
-      ).catch(err => console.log("err", err)
-      )
+        
+
+    // this.db.collection('users').doc(this.afAuth.auth.currentUser.uid).update({
+    //     cities: [...this.user.cities, zipcode]
+    //   }).then(res => console.log("res", res)
+    //   ).catch(err => console.log("err", err)
+    //   )
 
 
 

@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
   }
 
 
-
+ 
   onSubmit() {
     
     this.spinner.show();
@@ -72,7 +72,6 @@ export class SearchComponent implements OnInit {
       let dailyHumWind: HumidityWind[] = []
       //WEEKLYFORCAST
       let weeklyForcast: WeeklyForcast[] = [];
-
       data['daily'].data.forEach(el => {
         dailyHighsLows.push({date: new Date(el.time * 1000), high: el.temperatureHigh, low: el.temperatureLow, zipcode: search })
         dailyHumWind.push({date: new Date(el.time * 1000), hum: el.humidity * 100, cloudCover: el.cloudCover * 100 })

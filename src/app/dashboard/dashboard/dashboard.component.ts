@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getIpService.getIpAddressService();
+    // this.getIpService.getIpAddressService();
    
     
   } 
