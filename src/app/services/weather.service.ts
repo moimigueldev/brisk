@@ -25,8 +25,10 @@ export class WeatherService {
   humidityWind = new Subject<HumidityWind[]>();
   weeklyForcast = new Subject<WeeklyForcast[]>();
 
+  locationToSave: Location;
 
 
+ 
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService
@@ -42,15 +44,14 @@ export class WeatherService {
             return 'invalid';
             
           }else {
-          
- 
 
           let location: Location = {
             city: res['results']["0"].address_components[1].long_name,
             state: res['results']["0"].address_components[2].short_name
           }
 
-           this.location.next(location) 
+          this.locationToSave = location;
+          this.location.next(location);
 
           let coordinates = {
             lat: res['results'][0].geometry.location.lat,
@@ -69,13 +70,15 @@ export class WeatherService {
 
 
   emitWeather(
-    todaysWeather: CurrentWeather, 
-    dailyHighsLows: HighsLows[], 
+    todaysWeather: CurrentWeather,
+    dailyHighsLows: HighsLows[],
     dailyHumWind: HumidityWind[],
-    weeklyForcast: WeeklyForcast[]
+    weeklyForcast: WeeklyForcast[],
+    
     ) {
 
     this.spinner.hide();
+
     this.weather.next(todaysWeather);
     this.tempHighsLows.next(dailyHighsLows);
     this.humidityWind.next(dailyHumWind);

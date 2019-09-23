@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 import { Subscription } from 'rxjs';
+import { Location } from 'src/app/shared/interfaces/location';
+import { WeatherService } from 'src/app/services/weather.service';
 
 
 @Component({
@@ -22,20 +24,23 @@ export class UserComponent implements OnInit {
 
   userSubscription: Subscription;
 
+
   user;
 
 
+
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService,
-    private fas: FirebaseAuthService
+    private fas: FirebaseAuthService,
+
   ) { }
 
   ngOnInit() {
     this.userSubscription = this.fas.getUserData().subscribe(res => {
       this.cities = res['cities'];
       this.user = res;
+      console.log(this.user);
+      
     });
   }
 

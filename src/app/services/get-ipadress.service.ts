@@ -29,15 +29,15 @@ export class GetIPAdressService {
   getIpAddressService() {
     this.spinner.show();
     return this.http.get(this.ipAdressURL).subscribe(data => {
-
       this.searchWeatherSubscription = this.weatherService.getService(data['postal_code']).subscribe(data => {
         if (typeof data === 'string') {
           this.toastrService.error('Invalid Zipcode');
           this.spinner.hide();
-          this.searchWeatherSubscription.unsubscribe()
+          this.searchWeatherSubscription.unsubscribe();
         } 
         else {
-  
+          
+          
         //TODAYSWEATHER  
         const todaysWeather: CurrentWeather = {
           lat: data['latitude'],

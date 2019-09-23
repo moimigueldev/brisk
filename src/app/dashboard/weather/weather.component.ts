@@ -1,8 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
-import {Location} from 'src/app/shared/interfaces/location';
 import { Subscription } from 'rxjs';
-import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-weather',
@@ -17,8 +16,6 @@ export class WeatherComponent implements OnInit {
   todaysWeather;
 
 
-  
-
   constructor(
     private weatherService: WeatherService,
   ) { }
@@ -28,9 +25,8 @@ export class WeatherComponent implements OnInit {
     this.todaysWeather = data;    
    })
    this.currentWeatherSubscription =  this.weatherService.location.subscribe(data =>{
-     this.location = data
-     
-   })
+     this.location = data;
+   });
   }
 
   ngOnDestroy() {

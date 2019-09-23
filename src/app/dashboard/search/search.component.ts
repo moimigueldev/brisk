@@ -37,7 +37,7 @@ export class SearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.children[0]? this.onSubmit() : false
+    this.route.children[0]? this.onSubmit() : false;
   }
 
 
@@ -47,7 +47,6 @@ export class SearchComponent implements OnInit {
     this.spinner.show();
 
     const search = this.searchForm.value.search? this.searchForm.value.search :  this.route.children[0].params['_value'].zipcode;
-    console.log('this i the search', search)
     this.searchWeatherSubscription = this.weatherService.getService(search).subscribe(data => {
       if (typeof data === 'string') {
         this.toastrService.error('Invalid Zipcode');
@@ -79,9 +78,8 @@ export class SearchComponent implements OnInit {
         weeklyForcast.push({day: new Date(el.time * 1000) ,summary: el.summary, tempHigh: el.apparentTemperatureHigh, icon: el.icon})
       });
 
-
-
-
+     
+ 
       this.weatherService.emitWeather(
         todaysWeather, 
         dailyHighsLows, 

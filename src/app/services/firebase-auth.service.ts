@@ -5,6 +5,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable, of, Subscription } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { WeatherService } from './weather.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,15 +23,15 @@ export class FirebaseAuthService implements OnInit {
     private db: AngularFirestore,
     private router: Router,
     private ngZone: NgZone,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private weatherService: WeatherService
   ) {
 
-    console.log('contructing')
     // this is on contructor only for the auth guard
     this.authState = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          this.getCurrentUser(user.uid)
+          this.getCurrentUser(user.uid);
           return this.afs.doc(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);
@@ -41,7 +42,7 @@ export class FirebaseAuthService implements OnInit {
 
 
   ngOnInit() {
-    
+
   }
 
   signIn(userCred) {
@@ -103,7 +104,7 @@ export class FirebaseAuthService implements OnInit {
     this.userSubscription = this.db.doc(`users/${id}`).valueChanges().subscribe(res => {
      this.user = res;
     });
-    
+
   }
 
 
@@ -117,38 +118,25 @@ export class FirebaseAuthService implements OnInit {
   }
 
   addZipcode(zipcode) {
-    console.log('this is the zipcode', typeof zipcode);
 
-    if (this.user.cities.includes(zipcode)) {
-      this.toastrService.error(`You already have zipcode: ${zipcode} saved`);
-    } else {
+    const location = this.weatherService.locationToSave;
+    const doesNotRepeatPostal = this.user.cities.some(el => {
+      return  el.postal === zipcode;
+    });
+
+    console.log('postal', doesNotRepeatPostal)
+
+    if (!doesNotRepeatPostal) {
       this.db.collection('users').doc(this.afAuth.auth.currentUser.uid).update({
-        cities: [...this.user.cities, zipcode]
-      }).then(res => console.log("res", res)
-      ).catch(err => console.log("err", err)
+        cities: [...this.user.cities, {postal: zipcode, city: location.city, state: location.state }]
+      }).then(res => this.toastrService.success('Citi Saved')
+      ).catch(err => console.log('err', err)
       );
+    } else {
+      this.toastrService.warning(`Zipcode: ${zipcode} is already saved.`);
     }
 
-    
 
-
-
-
-    // this.db.collection('users').doc(`${this.user.uid}/cities`).update({
-    //   cities: [...this.user.cities, zipcode]
-    // }).then(res => console.log("res", res)
-    // ).catch(err => console.log("err", err)
-    // )
-
-
-
-    // this.db.collection('users').doc('mMrRkga5ggTdt9ROlbdysIa0ltL2').collection('zipcodes').add({123015: 'asd'}).then(res => console.log('res', res))
-
-  //   firebase.firestore()
-  // .collection('proprietary')
-  // .doc(docID)
-  // .collection('sharedWith')
-  // .add({ who: "third@test.com", when: new Date() })
   }
 
   ngOnDestroy() {
