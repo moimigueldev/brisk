@@ -1,19 +1,20 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, OnInit } from '@angular/core';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseAuthService {
+export class FirebaseAuthService implements OnInit {
 
 
   authState: Observable<{}>;
   user;
+  userSubscription: Subscription;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -22,19 +23,20 @@ export class FirebaseAuthService {
     private router: Router,
     private ngZone: NgZone,
     private toastrService: ToastrService
-  ) { 
-    
+  ) {
+
+    console.log('contructing')
+    // this is on contructor only for the auth guard
     this.authState = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-         
-          this.getUserData();
-          return this.afs.doc(`users/${user.uid}`).valueChanges()
+          this.getCurrentUser(user.uid)
+          return this.afs.doc(`users/${user.uid}`).valueChanges();
         } else {
-          return of(null)
+          return of(null);
         }
       })
-    )
+    );
   }
 
 
@@ -51,10 +53,10 @@ export class FirebaseAuthService {
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
-        
+
       }).catch((error) => {
-        window.alert(error.message)
-      })
+        window.alert(error.message);
+      });
   }
 
   signUp(client) {
@@ -68,7 +70,7 @@ export class FirebaseAuthService {
       });
     }).catch(err => {
       alert(err);
-    })
+    });
 
   }
 
@@ -83,26 +85,26 @@ export class FirebaseAuthService {
       lastName: client.lastName,
       cities: [],
       emailVerified: user.user.emailVerified
-    }
+    };
     return userRef.set(userData, {
       merge: true
-    })
+    });
   }
 
  getUserData() {
-   console.log('getting user data', this.afAuth.auth.currentUser.uid)
-     return this.db.doc(`users/${this.afAuth.auth.currentUser.uid}`).valueChanges().pipe(
+   return this.db.doc(`users/${this.afAuth.auth.currentUser.uid}`).valueChanges().pipe(
       map(res => {
-        
-        this.user = res;
-        return res
+        return res;
        })
-    )
+    );
+  }
 
-
+  getCurrentUser(id) {
+    this.userSubscription = this.db.doc(`users/${id}`).valueChanges().subscribe(res => {
+     this.user = res;
+    });
     
-
-}
+  }
 
 
 
@@ -111,19 +113,23 @@ export class FirebaseAuthService {
       localStorage.removeItem('user');
       this.user = null;
       this.router.navigate(['login']);
-    })
+    });
   }
 
   addZipcode(zipcode) {
-    console.log('this is the zipcode', this.user);
+    console.log('this is the zipcode', typeof zipcode);
 
-        
+    if (this.user.cities.includes(zipcode)) {
+      this.toastrService.error(`You already have zipcode: ${zipcode} saved`);
+    } else {
+      this.db.collection('users').doc(this.afAuth.auth.currentUser.uid).update({
+        cities: [...this.user.cities, zipcode]
+      }).then(res => console.log("res", res)
+      ).catch(err => console.log("err", err)
+      );
+    }
 
-    // this.db.collection('users').doc(this.afAuth.auth.currentUser.uid).update({
-    //     cities: [...this.user.cities, zipcode]
-    //   }).then(res => console.log("res", res)
-    //   ).catch(err => console.log("err", err)
-    //   )
+    
 
 
 
@@ -144,6 +150,9 @@ export class FirebaseAuthService {
   // .collection('sharedWith')
   // .add({ who: "third@test.com", when: new Date() })
   }
- 
+
+  ngOnDestroy() {
+    this.userSubscription ? this.userSubscription.unsubscribe() : null;
+  }
 
 }

@@ -15,6 +15,7 @@ export class ForcastChartComponent implements OnInit {
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   HighsLows = [];
   HighsLowsSubscription: Subscription;
+  userSubscription: Subscription;
 
   chartLabels;
   chartOptions = {
@@ -29,8 +30,7 @@ export class ForcastChartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    
+   
   
     this.HighsLowsSubscription =  this.weatherService.tempHighsLows.subscribe(data => {
       this.HighsLows = data;
@@ -70,7 +70,8 @@ export class ForcastChartComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.HighsLowsSubscription? this.HighsLowsSubscription.unsubscribe() : null;
+    console.log('onDestroyu dashboard');
+    this.userSubscription ? this.userSubscription.unsubscribe() : null ;
+    this.HighsLowsSubscription? this.HighsLowsSubscription.unsubscribe() : null ;
   }
 }
- 

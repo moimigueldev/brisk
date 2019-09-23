@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetIPAdressService } from 'src/app/services/get-ipadress.service';
+import { Subscription } from 'rxjs';
+import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,16 +10,15 @@ import { GetIPAdressService } from 'src/app/services/get-ipadress.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(
+  userSubscription: Subscription;
 
-  private getIpService: GetIPAdressService
+  constructor(
+    private fas: FirebaseAuthService,
+    private getIpService: GetIPAdressService
   ) { }
 
   ngOnInit() {
-    // this.getIpService.getIpAddressService();
-   
-    
-  } 
+  }
 
+  // tslint:disable-next-line: use-life-cycle-interface
 }
- 

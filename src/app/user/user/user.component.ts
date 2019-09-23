@@ -36,23 +36,19 @@ export class UserComponent implements OnInit {
     this.userSubscription = this.fas.getUserData().subscribe(res => {
       this.cities = res['cities'];
       this.user = res;
-      console.log('this user', this.cities)
-    })
-
-  
+    });
   }
 
   onSubmit() {
-    let search = this.searchForm.value.search;
+    const search = this.searchForm.value.search;
 
-    this.router.navigate([`/dashboard/${search}`])
+    this.router.navigate([`/dashboard/${search}`]);
 
   }
 
+  // tslint:disable-next-line: use-life-cycle-interface
   ngOnDestroy() {
-    console.log('onDestroy');
-
-    this.userSubscription? this.userSubscription.unsubscribe(): null;
+    this.userSubscription ? this.userSubscription.unsubscribe() : null;
   }
 
 }

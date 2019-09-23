@@ -45,12 +45,13 @@ export class SearchComponent implements OnInit {
   onSubmit() {
     
     this.spinner.show();
-    // let search = this.searchForm.value.search;
-    let search = this.route.children[0]? this.route.children[0].params['_value'].zipcode : this.searchForm.value.search;
+
+    const search = this.searchForm.value.search? this.searchForm.value.search :  this.route.children[0].params['_value'].zipcode;
+    console.log('this i the search', search)
     this.searchWeatherSubscription = this.weatherService.getService(search).subscribe(data => {
       if (typeof data === 'string') {
         this.toastrService.error('Invalid Zipcode');
-        this.searchWeatherSubscription.unsubscribe()
+        this.searchWeatherSubscription.unsubscribe();
       } 
       else {
 
