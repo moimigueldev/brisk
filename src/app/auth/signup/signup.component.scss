@@ -1,42 +1,22 @@
 @import "../../../styles/variables";
 
 .card {
-    background-color: transparent;
-    margin-top: 10vh;
     border: none;
-
-
-    .form-control {
-        background-color: inherit;
-        font-weight: bold;
-        color: black;
-        border:none;
-        border-bottom: 1px solid black;
-        margin-top: 2em;
-    
-        
+    .card-body {
+        padding: 2em;
     }
-
-
-    .btn-dark {
-        background-color:$navbar-bg-color;
-        font-size: 1.4em;
-        margin-top: 2em;
-    }
-
-    #logo {
-        font-size:4em;
-    }
-
 }
 
+.row {
+    height: 760px;
+}
 
-
-
-
-
-label {
-    font-size: 1.3em;
-    font-weight: 500;
+#signup-background {
+    background-image: url('../../../assets/images/login-photo-7.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 2px;
+    height: 100%;
 }
 

@@ -1,80 +1,24 @@
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-md-12">
- 
-        <div class="card ">
-            <div class="card-header text-center">
-              <img src="../../../assets/images/logo1.png" alt="">
-              <h1 id="logo">Login</h1>
-            </div>
-            <div class="card-body">
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                    <div class="form-row ">
-                      <div class="col-sm-6 my-1 mx-auto">
-                        <div class="">
-                          <input 
-                          type="text" 
-                          class="form-control form-control-lg" 
-                          id="staticEmail" 
-                          placeholder="Enter Email"
-                          formControlName="email"
-                          >
-                        </div>
-                      </div>
-                        </div>
-                        <div class="form-row ">
-                          <div class="col-sm-6 my-1 mx-auto">
-                            <div class="">
-                              <input 
-                              type="password"
-                              class="form-control form-control-lg" 
-                              id="staticPassword" 
-                              placeholder="Enter Password"
-                              formControlName="password">
-                            </div>
-                          </div>
-                          </div>
-                          <div class="form-row">
-                            <div class="col-sm-6 my-1 mx-auto">
-                                <button 
-                                type="submit"
-                                class="btn btn-dark btn-lg btn-block" 
-                                >Submit</button>
-                            </div>
-                          </div>
-                  </form>
-            </div>
-        </div>
-    </div>
-  </div>
-</div>
- -->
-
-
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="col-md-6" id="login-background">
-
     </div>
     <div class="col-md-6 my-auto">
- 
-        <div class="card my-auto text-center" >
-            <div class="card-body">
-              <h1 class="card-title mb-5">Login to Brisk</h1>
-              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <input class="form-control form-control-lg" type="email" placeholder="Email" formControlName="email">
-                </div>
-                <div class="form-group">
-                    <input class="form-control form-control-lg" type="password" placeholder="Password" formControlName="password">
-                </div>
-              
-                <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
-              </form>
-              
+      <div class="card my-auto text-center">
+        <div class="card-body">
+          <h1 class="card-title mb-5">Login to Brisk</h1>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <input class="form-control form-control-lg" type="email" placeholder="Email" formControlName="email">
             </div>
-          </div>
+            <div class="form-group">
+              <input class="form-control form-control-lg" type="password" placeholder="Password"
+                formControlName="password">
+            </div>
+            <p class="text-muted" id="create-account" (click)="goToSignup()">Create an Account</p>
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-

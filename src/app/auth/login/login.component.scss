@@ -15,14 +15,17 @@
 .row {
     height: 760px;
 
-    .col-md-6 {
-        padding: 0;
-    }
-    
+ 
 }
 
 #login-background {
     background-image: url('../../../assets/images/login-photo-3.jpg');
     background-size: cover;
-    border-radius: 10px;
+    background-repeat: no-repeat;
+    border-radius: 2px;
+    height: 100%;
+}
+
+#create-account {
+    cursor: pointer;
 }
