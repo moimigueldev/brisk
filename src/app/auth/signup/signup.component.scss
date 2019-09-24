@@ -1,5 +1,8 @@
 @import "../../../styles/variables";
 
+
+
+// DESKTOP LAYOUT
 .card {
     border: none;
     .card-body {
@@ -17,6 +20,40 @@
     background-repeat: no-repeat;
     background-position: center center;
     border-radius: 2px;
-    height: 100%;
 }
 
+//MEDIA QUERIES
+@media only screen and (max-width: 770px) {
+    #signup-background {
+        display: none;
+       
+    }
+
+    #signup-with-background.card-body {
+        margin: 0;
+        padding:0;
+    }
+
+    .container {     
+        background: 
+          linear-gradient(
+            $tinted-background-overlay, 
+            $tinted-background-overlay
+          ),
+          url('../../../assets/images/login-photo-7.jpg');
+        background-size: cover;
+        background-repeat: repeat;
+        background-position: center center;
+        border-radius: 2px;
+
+        .card {
+            background-color: transparent;
+        }
+    }
+}
+
+@media only screen and (max-height: 800px) {
+    // .row {
+    //     height: 85vh;
+    // }
+}

@@ -1,9 +1,9 @@
-<div class="container mt-3">
+<div class="container my-md-4 my-xs-0">
   <div class="row">
     <div class="col-md-6" id="login-background">
     </div>
-    <div class="col-md-6 my-auto">
-      <div class="card my-auto text-center">
+    <div class="col-md-6 my-md-auto  m-xs-0" id="login-with-background">
+      <div class="card my-md-auto  m-xs-0 text-center">
         <div class="card-body">
           <h1 class="card-title mb-5">Login to Brisk</h1>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -14,7 +14,7 @@
               <input class="form-control form-control-lg" type="password" placeholder="Password"
                 formControlName="password">
             </div>
-            <p class="text-muted" id="create-account" (click)="goToSignup()">Create an Account</p>
+            <p id="create-account" class="text-muted"  (click)="goToSignup()">Create an Account</p>
             <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
           </form>
         </div>

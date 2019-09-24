@@ -1,5 +1,7 @@
 @import "../../../styles/variables";
 
+
+// DESKTOP DISPLAY
 .card {
     border: none;
     .card-body {
@@ -10,22 +12,67 @@
         height: calc(1.5em + 3rem + 2px);
         margin-bottom: 2em;
     }
+
+    #create-account {
+        cursor: pointer;
+    }
 }
 
 .row {
     height: 760px;
-
- 
 }
 
 #login-background {
     background-image: url('../../../assets/images/login-photo-3.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
     border-radius: 2px;
-    height: 100%;
 }
 
-#create-account {
-    cursor: pointer;
+//MEDIA QUERIES
+@media only screen and (max-width: 770px) {
+    #login-background {
+        display: none;
+    }
+
+    #login-with-background.card-body {
+        margin: 0;
+        padding:0;
+    }
+
+    .container {     
+        background: 
+          linear-gradient(
+            $tinted-background-overlay, 
+            $tinted-background-overlay
+          ),
+          url('../../../assets/images/login-photo-3.jpg');
+        background-size: cover;
+        background-repeat: repeat;
+        background-position: center center;
+
+        .card {
+            background-color: transparent;
+
+            .form-control-lg {
+                height: calc(1.5em + 2rem + 2px);
+            }
+        }
+    }
+
+    .text-muted{
+        color: rgb(0, 0, 0)!important;
+        font-size: 1.2em;
+        font-weight: 650;
+    } 
+}//end media of query 
+
+
+// MEDIUM DISPLAYS
+@media (max-height:785px) and (min-width: 770px) {
+
+    .row {
+        height: 87vh;
+    }
 }
