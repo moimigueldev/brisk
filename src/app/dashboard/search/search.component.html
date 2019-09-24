@@ -1,10 +1,21 @@
-<form [formGroup]="searchForm" (submit)="onSubmit()">
-  <input 
-  type="text" 
-  class="form-control form-control-lg" 
-  formControlName="search" 
-  placeholder="ZIPCODE"
-  maxlength="5"
-  >
-</form>
-
+<div class="row justify-content-center my-md-2">
+  <div class="col-12 col-md-10 col-lg-8">
+    <form class="card card-sm"  [formGroup]="searchForm" (submit)="onSubmit()">
+      <div class="card-body row no-gutters align-items-center">
+        <div class="col-auto">
+          <fa name="map-marker" style="font-size: x-large"></fa>
+        </div>
+        <!--end of col-->
+        <div class="col">
+          <input class="form-control form-control-lg form-control-borderless" type="text"
+            placeholder="Search for city by zipcode" formControlName="search">
+        </div>
+        <!--end of col-->
+        <div class="col-auto">
+          <button class="btn btn-success" type="submit">Search</button>
+        </div>
+        <!--end of col-->
+      </div>
+    </form>
+  </div>
+</div>

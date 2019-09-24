@@ -4,5 +4,17 @@
 
 
 
-html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; };
+
+
+// STYLE FOR THE SEARCH BAR!
+.form-control-borderless {
+    border: none;
+}
+
+// STYLE FOR THE SEARCH BAR!
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
