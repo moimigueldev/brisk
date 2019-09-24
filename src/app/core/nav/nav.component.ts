@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class NavComponent implements OnInit {
 
+
   today = new Date();
   isLoggedIn:boolean;
   user;

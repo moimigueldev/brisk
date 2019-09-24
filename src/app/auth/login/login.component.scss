@@ -1,42 +1,28 @@
 @import "../../../styles/variables";
 
 .card {
-    background-color: transparent;
-    margin-top: 10vh;
     border: none;
-
+    .card-body {
+        padding: 2em;
+    }
 
     .form-control-lg {
-        background-color: inherit;
-        font-weight: bold;
-        color: black;
-        border:none;
-        border-bottom: 1px solid black;
-        margin-top: 2em;
+        height: calc(1.5em + 3rem + 2px);
+        margin-bottom: 2em;
+    }
+}
+
+.row {
+    height: 760px;
+
+    .col-md-6 {
+        padding: 0;
+    }
     
-        
-    }
-
-
-    .btn-dark {
-        background-color:$navbar-bg-color;
-        font-size: 1.4em;
-        margin-top: 2em;
-    }
-
-    #logo {
-        font-size:4em;
-    }
-
 }
 
-
-
-
-
-
-label {
-    font-size: 1.3em;
-    font-weight: 500;
+#login-background {
+    background-image: url('../../../assets/images/login-photo-3.jpg');
+    background-size: cover;
+    border-radius: 10px;
 }
-

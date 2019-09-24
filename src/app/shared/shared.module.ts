@@ -4,7 +4,8 @@ import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { SkyconsModule } from 'ngx-skycons';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   declarations: [],
@@ -14,9 +15,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserAnimationsModule,
     ChartsModule,
     SkyconsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    AngularFontAwesomeModule
   ],
-  exports: [ChartsModule, SkyconsModule, NgxSpinnerModule]
+  exports: [ChartsModule, SkyconsModule, NgxSpinnerModule, AngularFontAwesomeModule]
   
 })
 export class SharedModule { }

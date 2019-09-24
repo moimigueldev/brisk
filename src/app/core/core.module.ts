@@ -8,6 +8,7 @@ import { GetIPAdressService } from '../services/get-ipadress.service';
 import { UserService } from '../services/user.service';
 import { FirebaseModule } from './firebase.module';
 import { FirebaseAuthService } from '../services/firebase-auth.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [NavComponent],
@@ -16,6 +17,7 @@ import { FirebaseAuthService } from '../services/firebase-auth.service';
     RouterModule,
     HttpClientModule,
     FirebaseModule,
+    SharedModule
   ],
   exports: [
     NavComponent
