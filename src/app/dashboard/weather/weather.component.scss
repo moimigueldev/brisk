@@ -1,34 +1,15 @@
-.col-md-6   {
+.card   {
     border: 1px solid green;
-}
+    
+    .card-body {
+        padding: 10px;
+    }
 
-#cityName {
-    hr {
-        border: 1px solid white;
-        width: 150px;
-        border-bottom-width: thick;
-        border-radius: 50px;
+    .card-title {
+        padding-left: 10px;
     }
 }
 
-#cityWeather {
-    h1 {
-        color: white;
-        font-size: 
-        9em;
 
-        span {
-            color: grey;
-            font-size: 30px;
-            margin-left: 0.3em;
-        }
-    }
 
-    h3 {
-        font-size: 2.5em;
-    }
 
-    #right-border {
-        padding-right:10px;
-    }
-}

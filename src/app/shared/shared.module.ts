@@ -6,6 +6,7 @@ import { ChartsModule } from 'ng2-charts';
 import { SkyconsModule } from 'ngx-skycons';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [],
@@ -16,9 +17,10 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     ChartsModule,
     SkyconsModule,
     NgxSpinnerModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FontAwesomeModule
   ],
-  exports: [ChartsModule, SkyconsModule, NgxSpinnerModule, AngularFontAwesomeModule]
+  exports: [ChartsModule, SkyconsModule, NgxSpinnerModule, AngularFontAwesomeModule,FontAwesomeModule]
   
 })
 export class SharedModule { }

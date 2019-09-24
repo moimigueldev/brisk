@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Subscription } from 'rxjs';
-
+import { faFan, faTint } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-weather',
@@ -9,6 +9,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
+
+  faFan = faFan;
+  faTint = faTint;
 
   locationSubscription: Subscription;
   currentWeatherSubscription: Subscription;

@@ -1,4 +1,4 @@
-<div class="row ">
+<!-- <div class="row ">
   <div class="col-md-6" id="cityWeather"  *ngIf="todaysWeather" >
     <div class="row">
       <div class="col-12 mt-5">
@@ -18,7 +18,48 @@
     </div>
   </div>
   <div class="col-md-6 " id="cityName" *ngIf="location && todaysWeather">
-    <h1 class="text-center mt-md-5 mt-sm-1" id="cityName">{{location.city}}, MN</h1>
+    <h1 class="text-center mt-md-5 mt-sm-1" id="cityName">{{location.city}}, {{location.state}}</h1>
     <hr>
   </div>
-</div> 
+</div>  -->
+
+
+<!-- <div class="col-md-6 " *ngIf="todaysWeather">
+    <h1 class="">{{location.city}}, {{location.state}}</h1>
+  <div class="row">
+    <div class="col-12 mt-5">
+      <h1 class="text-center h1">{{todaysWeather.temp | number : '1.0-0'}}<span class="">°F</span></h1>
+    </div>
+    <div class="col-12">
+      <h3 class=" text-center">{{todaysWeather.summary | uppercase}}</h3>
+    </div>
+    <div class="col-6  " id="right-border">
+      <h4 class="text-right">HUMIDITY</h4>
+      <h4 class="text-right mr-4">{{todaysWeather.humidity*100 | number : '1.0-0'}}%</h4>
+    </div>
+    <div class="col-6  ">
+      <h4 class="text-left">WIND</h4>
+      <h5 class="text-left ml-0">{{todaysWeather.windSpeed | number : '1.0-0' }}mph</h5>
+    </div>
+  </div>
+</div> -->
+
+<div class="card" *ngIf="todaysWeather">
+    <h1 class="card-title">{{location.city}}, {{location.state}}</h1>
+  <div class="card-body ">
+    <div class="row justify-content-between">
+      <div class="col-5">
+        <h1 class="">{{todaysWeather.temp | number : '1.0-0'}}<span class="">°F</span></h1>
+        <h3 class="text">{{todaysWeather.summary | uppercase}}</h3>
+      </div>
+      <div class="col-5">
+        <h5 class=""><fa-icon [icon]="faTint"></fa-icon> HUMIDITY: <span class="text-muted">{{todaysWeather.humidity*100 | number : '1.0-0'}}%</span> </h5>
+        <hr>
+        <h5 class=""><fa-icon [icon]="faFan"></fa-icon> WINDS: <span class="text-muted">{{todaysWeather.windSpeed | number : '1.0-0' }}MPH</span> </h5>
+      </div>
+    </div>
+
+    
+    
+  </div>
+</div>

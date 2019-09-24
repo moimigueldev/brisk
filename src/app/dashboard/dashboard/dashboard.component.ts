@@ -3,6 +3,7 @@ import { GetIPAdressService } from 'src/app/services/get-ipadress.service';
 import { Subscription } from 'rxjs';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,6 +12,7 @@ import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 export class DashboardComponent implements OnInit {
 
   userSubscription: Subscription;
+
 
   constructor(
     private fas: FirebaseAuthService,
