@@ -1,5 +1,5 @@
 import { Injectable, NgZone, OnInit } from '@angular/core';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, of, Subscription } from 'rxjs';
@@ -11,7 +11,6 @@ import { WeatherService } from './weather.service';
   providedIn: 'root'
 })
 export class FirebaseAuthService implements OnInit {
-
 
   authState: Observable<{}>;
   user;
@@ -40,29 +39,22 @@ export class FirebaseAuthService implements OnInit {
     );
   }
 
-
   ngOnInit() {
 
   }
 
   signIn(userCred) {
-
     return this.afAuth.auth.signInWithEmailAndPassword(userCred.email, userCred.password)
       .then((res) => {
-
-
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
-
       }).catch((error) => {
         window.alert(error.message);
       });
   }
 
   signUp(client) {
-
-
     return this.afAuth.auth.createUserWithEmailAndPassword(client.email, client.password).then(user => {
       this.setUserData(user, client);
       this.ngZone.run(() => {
@@ -72,10 +64,7 @@ export class FirebaseAuthService implements OnInit {
     }).catch(err => {
       alert(err);
     });
-
   }
-
-
 
   setUserData(user, client) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.user.uid}`);
@@ -92,22 +81,19 @@ export class FirebaseAuthService implements OnInit {
     });
   }
 
- getUserData() {
-   return this.db.doc(`users/${this.afAuth.auth.currentUser.uid}`).valueChanges().pipe(
+  getUserData() {
+    return this.db.doc(`users/${this.afAuth.auth.currentUser.uid}`).valueChanges().pipe(
       map(res => {
         return res;
-       })
+      })
     );
   }
 
   getCurrentUser(id) {
     this.userSubscription = this.db.doc(`users/${id}`).valueChanges().subscribe(res => {
-     this.user = res;
+      this.user = res;
     });
-
   }
-
-
 
   signOut() {
     return this.afAuth.auth.signOut().then(() => {
@@ -118,27 +104,34 @@ export class FirebaseAuthService implements OnInit {
   }
 
   addZipcode(zipcode) {
-
     const location = this.weatherService.locationToSave;
     const doesNotRepeatPostal = this.user.cities.some(el => {
-      return  el.postal === zipcode;
+      return el.postal === zipcode;
     });
-
-    console.log('postal', doesNotRepeatPostal)
 
     if (!doesNotRepeatPostal) {
       this.db.collection('users').doc(this.afAuth.auth.currentUser.uid).update({
-        cities: [...this.user.cities, {postal: zipcode, city: location.city, state: location.state }]
+        cities: [...this.user.cities, { postal: zipcode, city: location.city, state: location.state }]
       }).then(res => this.toastrService.success('Citi Saved')
       ).catch(err => console.log('err', err)
       );
     } else {
       this.toastrService.warning(`Zipcode: ${zipcode} is already saved.`);
     }
-
-
   }
 
+  deleteCity(index) {
+    // Deletes the selected item from array.
+    this.user.cities.splice(index, 1);
+
+    this.db.collection('users').doc(this.afAuth.auth.currentUser.uid).update({
+      cities: this.user.cities
+    }).then(res => this.toastrService.success('City Deleted')
+    ).catch(err => console.log('err', err)
+    );
+  }
+
+  // tslint:disable-next-line: use-life-cycle-interface
   ngOnDestroy() {
     this.userSubscription ? this.userSubscription.unsubscribe() : null;
   }

@@ -8,12 +8,12 @@
         formControlName="search" 
         placeholder="ZIPCODE"
         maxlength="5"
-        >
+        > 
       </form> 
     </div>
   </div>
 
-  <div class="row"  *ngFor="let city of cities">
+  <div class="row"  *ngFor="let city of cities; let i = index">
     <div class="col-md-12 my-5" >
       <div class="card user-card" > 
         <div class="card-body">
@@ -23,15 +23,16 @@
               <p class="text-muted">Rainy with a chance of meatballs</p>
             </div>
             <div class="col-md-8">
-              <h1 class="text-right">Lakeville, MN</h1>
+              <h1 class="text-right">{{city.city}}, {{city.state}}</h1>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
-              <button class="btn btn-outline-success btn-lg  ml-5">View</button>
+              <button class="btn btn-outline-success btn-lg  ml-5" (click)="onView(i)">View</button>
             </div>
+            
             <div class="col-md-6  text-right">
-              <button class="btn btn-outline-danger btn-lg ">Delete</button>
+              <button class="btn btn-outline-danger btn-lg " (click)="onDeleteCity(i)">Delete</button>
             </div>
           </div>
         </div>

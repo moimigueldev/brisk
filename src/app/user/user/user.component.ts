@@ -18,21 +18,15 @@ export class UserComponent implements OnInit {
   searchForm = new FormGroup({
     search: new FormControl('')
 
-  })
+  });
 
   cities = [];
-
   userSubscription: Subscription;
-
-
   user;
-
-
 
   constructor(
     private router: Router,
     private fas: FirebaseAuthService,
-
   ) { }
 
   ngOnInit() {
@@ -40,15 +34,21 @@ export class UserComponent implements OnInit {
       this.cities = res['cities'];
       this.user = res;
       console.log(this.user);
-      
     });
   }
 
   onSubmit() {
     const search = this.searchForm.value.search;
-
     this.router.navigate([`/dashboard/${search}`]);
+  }
 
+  onDeleteCity(index) {
+    this.fas.deleteCity(index);
+  }
+
+  onView(index) {
+    // take the user to the selected zipcode
+    this.router.navigate([`/dashboard/${this.cities[index].postal}`]);
   }
 
   // tslint:disable-next-line: use-life-cycle-interface
