@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import {Router } from '@angular/router';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 import { Subscription } from 'rxjs';
-import { Location } from 'src/app/shared/interfaces/location';
-import { WeatherService } from 'src/app/services/weather.service';
+import {faMapMarkedAlt, faEye, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -14,6 +12,11 @@ import { WeatherService } from 'src/app/services/weather.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+
+  // ICONS
+  faMapMarkedAlt = faMapMarkedAlt;
+  faEye = faEye;
+  faTrashAlt = faTrashAlt;
 
   searchForm = new FormGroup({
     search: new FormControl('')

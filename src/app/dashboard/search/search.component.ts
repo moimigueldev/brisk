@@ -9,7 +9,7 @@ import { HumidityWind } from 'src/app/shared/interfaces/humidity-wind';
 import { WeeklyForcast } from 'src/app/shared/interfaces/weekly-forcast';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import {faMapMarkedAlt} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -19,9 +19,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class SearchComponent implements OnInit {
 
-  searchWeatherSubscription: Subscription;
+  faMapMarkedAlt = faMapMarkedAlt;
 
- 
+  searchWeatherSubscription: Subscription;
 
   searchForm = new FormGroup({
     search: new FormControl('')

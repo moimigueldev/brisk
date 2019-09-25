@@ -5,7 +5,7 @@
       <form class="card card-sm" [formGroup]="searchForm" (submit)="onSubmit()">
         <div class="card-body row no-gutters align-items-center">
           <div class="col-auto">
-            <fa name="map-marker"  style="font-size: x-large"></fa>
+          <fa-icon [icon]="faMapMarkedAlt" style="font-size: x-large"></fa-icon >
           </div>
           <!--end of col-->
           <div class="col">
@@ -37,11 +37,11 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <button class="btn btn-outline-success btn-lg  ml-5" (click)="onView(i)">View</button>
+              <button class="btn btn-outline-success btn-lg  ml-5" (click)="onView(i)"><fa-icon [icon]="faEye"></fa-icon > View</button>
             </div>
 
             <div class="col-md-6  text-right">
-              <button class="btn btn-outline-danger btn-lg " (click)="onDeleteCity(i)">Delete</button>
+              <button class="btn btn-outline-danger btn-lg " (click)="onDeleteCity(i)"><fa-icon [icon]="faTrashAlt"></fa-icon > Delete</button>
             </div>
           </div>
         </div>

@@ -5,7 +5,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { SkyconsModule } from 'ngx-skycons';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -17,10 +16,9 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     ChartsModule,
     SkyconsModule,
     NgxSpinnerModule,
-    AngularFontAwesomeModule,
     FontAwesomeModule
   ],
-  exports: [ChartsModule, SkyconsModule, NgxSpinnerModule, AngularFontAwesomeModule,FontAwesomeModule]
+  exports: [ChartsModule, SkyconsModule, NgxSpinnerModule, FontAwesomeModule]
   
 })
 export class SharedModule { }

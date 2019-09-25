@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
+import {faUserPlus} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-signup',
@@ -8,6 +9,9 @@ import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+
+  // ICONS
+  faUserPlus = faUserPlus;
 
   signupForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),

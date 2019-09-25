@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 import { Subscription } from 'rxjs';
+import {faSignOutAlt, faUserCog, faTachometerAlt, faKey} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-nav',
@@ -9,22 +10,27 @@ import { Subscription } from 'rxjs';
 })
 export class NavComponent implements OnInit {
 
-
   today = new Date();
-  isLoggedIn:boolean;
+  isLoggedIn: boolean;
   user;
 
+  // Navigation bar icons
+  faUserCog = faUserCog;
+  faTachometerAlt = faTachometerAlt;
+  faKey = faKey;
+  faSignOutAlt = faSignOutAlt;
+
   isLoggedInSubscription: Subscription;
-  
+
 
   constructor(private fas: FirebaseAuthService) { }
 
   ngOnInit() {
     this.isLoggedInSubscription = this.fas.authState.subscribe(res => {
-      this.isLoggedIn =  res? true: false;
-      this.user = res? res: null;
+      this.isLoggedIn = res ? true : false;
+      this.user = res ? res : null;
     });
-    
+
   }
 
   signout() {
@@ -32,8 +38,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.isLoggedInSubscription? this.isLoggedInSubscription.unsubscribe() : null;
+    this.isLoggedInSubscription ? this.isLoggedInSubscription.unsubscribe() : null;
   }
 
 }
- 

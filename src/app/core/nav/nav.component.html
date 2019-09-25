@@ -8,31 +8,29 @@
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
         <a class="nav-link" routerLink="/user" routerLinkActive="active-link">
-          <fa name="user"></fa> USER
+          <fa-icon [icon]="faUserCog"></fa-icon> USER
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/dashboard" routerLinkActive="active-link">
-          <fa name="tachometer"></fa> DASHBOARD
+          <fa-icon [icon]="faTachometerAlt"></fa-icon> DASHBOARD
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/login" routerLinkActive="active-link" *ngIf="!isLoggedIn">
-          <fa name="key"></fa> LOGIN
+          <fa-icon [icon]="faKey"></fa-icon> LOGIN
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active-link" *ngIf="isLoggedIn" (click)="signout()">
-          <fa name="sign-out"></fa> LOGOUT
+            <fa-icon [icon]="faSignOutAlt"></fa-icon> LOGOUT
         </a>
       </li>
     </ul>
-
     <h3 class="mx-auto " id="nav-date" *ngIf="isLoggedIn">{{today | date:'MMM'}}, {{today | date:'d'}}th
       {{today | date:'y'}}</h3>
-
     <form class="form-inline my-2 my-lg-0 mr-2 ml-auto">
       <h5 id="nav-name" *ngIf="isLoggedIn">WELCOME {{user.firstName | uppercase}} {{user.lastName | uppercase}}</h5>
     </form>
   </div>
-</nav>
+</nav> 
