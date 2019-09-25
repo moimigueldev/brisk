@@ -16,18 +16,23 @@
    -->
 
 
-<div class="col-md-6" *ngIf="humWindData.length == 8">
-
-  <h1>tHI IS THE CHART</h1>
-
-    <canvas
-    baseChart
-    [chartType]="'bar'"
-    [datasets]="chartDatasets"
-    [labels]="chartLabels"
-    [options]="chartOptions"
+<div class="card" *ngIf="humWindData.length == 8">
+  <div class="card-body ">
+      <canvas
+      width="400"
+      
+      baseChart
+      [chartType]="'bar'"
+      [datasets]="chartDatasets"
+      [labels]="chartLabels"
+      [options]="chartOptions"
     
     ></canvas>
-
+  </div>
 </div>
+
+
+
+
+
   

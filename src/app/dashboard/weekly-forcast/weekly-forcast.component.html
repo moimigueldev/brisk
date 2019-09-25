@@ -1,13 +1,12 @@
-<div class="row justify-content-center" *ngIf="weeklyForcastData.length == 5">
-  <div class="col-sm-2" *ngFor="let card of weeklyForcastData; index as i">
-    <div class="card" style="width: 18rem;">
-        <sc-skycons class='weather-icons' [weather]="card.icon" [color]="'white'"></sc-skycons>
-      <!-- <img class="card-img-top img-fluid text-center mx-auto" src="../../../assets/images/weather/partly-cloudy-day.png" alt="Card image cap"> -->
-      <div class="card-body m-0">
-        <h1 class="text-right">{{card.day}}</h1>
-        <h3 class="text-right">{{card.tempHigh | number : '1.0-0'}} °F</h3>
+<div class="row justify-content-between" >
+  <div class="col-md-2 col-md-2 card-column" *ngFor="let card of weeklyForcastData; index as i">
+    <div class="card d-md-inline-block ">
+      <div class="card-body px-0">
+       <sc-skycons class='weather-icons p-0' [weather]="card.icon" [color]="'black'"></sc-skycons>
+        <h1 class="text-right ">{{card.day}}</h1>
+        <h3 class="text-right">{{card.tempHigh | number : '1.0-0'}}°F</h3>
         <h4 class="text-muted text-center">{{card.summary}}</h4>
       </div>
     </div>
   </div>
-</div>
+</div> 

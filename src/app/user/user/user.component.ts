@@ -36,7 +36,6 @@ export class UserComponent implements OnInit {
     this.userSubscription = this.fas.getUserData().subscribe(res => {
       this.cities = res['cities'];
       this.user = res;
-      console.log(this.user);
     });
   }
 

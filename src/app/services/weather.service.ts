@@ -38,17 +38,17 @@ export class WeatherService {
     if (zipcode) {
        return this.http.get(`/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`).pipe(
         switchMap(res => {
+          
 
-          if (res['status'] === "ZERO_RESULTS") {
+          if (res['status'] === "ZERO_RESULTS" || res['results']["0"].address_components.length <= 1 ) {
             this.spinner.hide();
             return 'invalid';
-            
-          }else {
+          } else {
 
           let location: Location = {
             city: res['results']["0"].address_components[1].long_name,
             state: res['results']["0"].address_components[2].short_name
-          }
+          };
 
           this.locationToSave = location;
           this.location.next(location);
@@ -56,7 +56,7 @@ export class WeatherService {
           let coordinates = {
             lat: res['results'][0].geometry.location.lat,
             lon: res['results'][0].geometry.location.lng
-          }
+          };
 
           return this.http.get(`/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`)
         }

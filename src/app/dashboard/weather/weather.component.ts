@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterViewChecked, AfterContentChecked} from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Subscription } from 'rxjs';
 import { faFan, faTint } from '@fortawesome/free-solid-svg-icons';
@@ -23,13 +23,17 @@ export class WeatherComponent implements OnInit {
     private weatherService: WeatherService,
   ) { }
 
+  
+
+
   ngOnInit() {
-   this.locationSubscription =  this.weatherService.weather.subscribe(data =>{
-    this.todaysWeather = data;    
-   })
-   this.currentWeatherSubscription =  this.weatherService.location.subscribe(data =>{
-     this.location = data;
-   });
+    this.locationSubscription =  this.weatherService.weather.subscribe(data =>{
+      this.todaysWeather = data;
+      // (document.querySelector('.weather-icons.skycons__canvas') as HTMLCanvasElement).style.width = 'inherit';
+    });
+    this.currentWeatherSubscription =  this.weatherService.location.subscribe(data =>{
+      this.location = data;
+    });
   }
 
   ngOnDestroy() {

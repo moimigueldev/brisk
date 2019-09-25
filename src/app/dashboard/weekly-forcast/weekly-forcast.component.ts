@@ -12,7 +12,6 @@ export class WeeklyForcastComponent implements OnInit {
   weeklyForcastData = [];
 
   weatherForcastSubscription: Subscription;
-  
 
   days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -20,7 +19,9 @@ export class WeeklyForcastComponent implements OnInit {
     private weatherService: WeatherService,
   ) { }
 
+
   ngOnInit() {
+    
     this.weatherForcastSubscription =   this.weatherService.weeklyForcast.subscribe(data => {
       this.weeklyForcastData = data;
 
@@ -31,8 +32,11 @@ export class WeeklyForcastComponent implements OnInit {
       this.weeklyForcastData.pop();
       this.weeklyForcastData.pop();
       this.weeklyForcastData.pop();
+
+      // (document.querySelector('.d-md-inline-block') as HTMLElement).css
+
     });
-  }
+  } 
 
   ngOnDestroy() {
     this.weatherForcastSubscription ? this.weatherForcastSubscription.unsubscribe() : null;
