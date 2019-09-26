@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-sm-12" *ngIf="HighsLows.length == 8">
@@ -19,5 +19,22 @@
     (click)="saveCity()" 
     >Save</button>
   </div>
-</div>
-
+</div> -->
+<div class="card" *ngIf="HighsLows.length == 8">
+    <div class="card-body ">
+        <canvas
+        width="400"
+        
+        baseChart
+  [chartType]="'line'"
+  [datasets]="chartDatasets"
+  [labels]="chartLabels"
+  [options]="chartOptions"
+  [legend]="true"
+      
+      ></canvas>
+    </div>
+  </div>
+  
+  
+  

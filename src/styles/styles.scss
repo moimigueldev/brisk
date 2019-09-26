@@ -2,6 +2,14 @@
 @import "../styles/variables";
 @import "../../node_modules/ngx-toastr/toastr.css";
 
+// DEFINING GLOBAL FONTS
+@font-face {font-family: bebasNeueBold; src: url('../assets/fonts/BebasNeue-Bold.otf') format("opentype");}
+@font-face {font-family: bebasNeuerRegular; src: url('../assets/fonts/BebasNeue-Regular.otf') format("opentype");}
+@font-face {font-family: bebasNeuerLight; src: url('../assets/fonts/BebasNeue-Light.otf') format("opentype");}
+@font-face {font-family: montserratBold; src: url('../assets/fonts/Montserrat-Bold.otf') format("opentype");}
+@font-face {font-family: montserratLight; src: url('../assets/fonts/Montserrat-Light.otf') format("opentype");}
+@font-face {font-family: montserratMedium; src: url('../assets/fonts/Montserrat-Medium.otf') format("opentype");}
+@font-face {font-family: montserratSemiBold; src: url('../assets/fonts/Montserrat-SemiBold.otf') format("opentype");}
 
 
 
@@ -20,7 +28,13 @@ html, body { height: 100%; };
     box-shadow: none;
 }
 
+#searchInput {
+    font-family: montserratLight
+}
+
 //resizes the weather icons on weekly-forcast component
 .skycons__canvas {
     width: inherit;
 }
+
+

@@ -30,7 +30,7 @@
     <h3 class=" " id="nav-date" *ngIf="isLoggedIn">{{today | date:'MMM'}}, {{today | date:'d'}}th
       {{today | date:'y'}}</h3>
     <form class="form-inline my-2 my-lg-0 mr-2 ml-auto">
-      <h5 id="nav-name" *ngIf="isLoggedIn">WELCOME {{user.firstName | uppercase}} {{user.lastName | uppercase}}</h5>
+      <h5 id="nav-name" *ngIf="isLoggedIn">{{user.firstName | uppercase}} {{user.lastName | uppercase}}  </h5>
     </form>
   </div>
 </nav>
