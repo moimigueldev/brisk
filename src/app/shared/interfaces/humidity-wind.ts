@@ -1,5 +1,6 @@
 export interface HumidityWind {
     date: Date,
     hum: number,
-    cloudCover: number
+    cloudCover: number,
+    zipcode: string;
 }

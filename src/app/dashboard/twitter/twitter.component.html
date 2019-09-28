@@ -1,19 +1,8 @@
 <div class="card" *ngIf="humWindData.length == 8">
   <div class="card-body ">
-      <canvas
-      
-      baseChart
-      [chartType]="'bar'"
-      [datasets]="chartDatasets"
-      [labels]="chartLabels"
-      [options]="chartOptions"
-    
-    ></canvas>
+    <canvas baseChart [chartType]="'bar'" [datasets]="chartDatasets" [labels]="chartLabels"
+      [options]="chartOptions"></canvas>
   </div>
 </div>
 
-
-
-
-
-  
+<button *ngIf="humWindData.length == 8 " class="btn btn-outline-primary ml-3" (click)="saveCity()">Save City</button>

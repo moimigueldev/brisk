@@ -23,6 +23,8 @@ export class UserComponent implements OnInit {
 
   });
 
+  bgColorsCities = ['#ffcc80', '#9fa8da', '#e0e0e0', ' #ffcc80', '#212529'];
+
   cities = [];
   userSubscription: Subscription;
   user;
@@ -52,6 +54,8 @@ export class UserComponent implements OnInit {
     // take the user to the selected zipcode
     this.router.navigate([`/dashboard/${this.cities[index].postal}`]);
   }
+
+
 
   // tslint:disable-next-line: use-life-cycle-interface
   ngOnDestroy() {

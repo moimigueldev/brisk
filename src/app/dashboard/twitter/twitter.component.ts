@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Subscription } from 'rxjs';
+import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
+import { Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-twitter',
@@ -16,24 +18,28 @@ export class TwitterComponent implements OnInit {
   humWindData = [];
   chartOptions = {
     responsive: true
-  }; 
+  };
   chartDatasets = [];
   chartLabels = [];
+  zipcode;
 
   constructor(
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private fas: FirebaseAuthService,
+    private route: ActivatedRoute 
   ) { }
 
   ngOnInit() {
-   this.humCloudSubscription =  this.weatherService.humidityWind.subscribe(data => {
+    this.humCloudSubscription = this.weatherService.humidityWind.subscribe(data => {
       this.humWindData = data;
+      this.zipcode = data[0].zipcode;
       this.showGraph();
     })
   }
 
   showGraph() {
-    
-    
+
+
 
     let daysData = [];
     let humData = [];
@@ -49,16 +55,20 @@ export class TwitterComponent implements OnInit {
     this.chartDatasets = [
       { data: humData, label: 'Humidity' },
       { data: cloudCover, label: 'Cloud Cover' },
-      
+
     ];
-  
+
     this.chartLabels = daysData;
 
   }
 
- ngOnDestroy() {
-  this.humCloudSubscription ? this.humCloudSubscription.unsubscribe() : null;
- }
+  saveCity() {
+    this.fas.addZipcode(this.zipcode || this.route.children[0].params['_value'].zipcode);
+  }
+
+  ngOnDestroy() {
+    this.humCloudSubscription ? this.humCloudSubscription.unsubscribe() : null;
+  }
 
 
 }

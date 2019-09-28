@@ -75,3 +75,4 @@ export class ForcastChartComponent implements OnInit {
     this.HighsLowsSubscription? this.HighsLowsSubscription.unsubscribe() : null ;
   }
 }
+ 

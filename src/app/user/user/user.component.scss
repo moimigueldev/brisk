@@ -1,21 +1,35 @@
 @import "../../../styles/variables.scss";
+$colors: #ffcc80, #9fa8da, #e0e0e0, #ffcc80, #212529;
 
-// .card {
-//     border-radius: 20px;
-//     background: rgb(142, 202, 1);
-//     // background: linear-gradient(0.25turn, $primary-color, $secondary-color, $light-blue);
-//     .user-card {
-//         border: 2px solid rgb(142, 202, 1);
-        
+
+
+.card {
+
+    border-radius: 20px;
+
+    h1 {
+        font-size: 60px;
+        font-family: montserratSemiBold;
+       
+    }
+
+    button {
+        font-family: montserratMedium;
+    }
+}
+
+// @for $i from 1 through 3 {
+
+//     .row
+
+//     li:nth-child(#{length($colors)}n+#{$i}) {
+//         background: lighten(nth($colors, random(length($colors))), 20%);
 //     }
 // }
 
-// .form-control-borderless {
-//     border: none;
-// }
 
-// .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
-//     border: none;
-//     outline: none;
-//     box-shadow: none;
-// }
+// #ffcc80
+// #9fa8da
+// #e0e0e0
+// #ffcc80
+// #212529

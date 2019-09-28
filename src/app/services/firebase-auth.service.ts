@@ -12,6 +12,8 @@ import { WeatherService } from './weather.service';
 })
 export class FirebaseAuthService implements OnInit {
 
+  bgColorsCities = ['#ffcc80', '#9fa8da', '#e0e0e0', ' #ffcc80', '#7dbbfa'];
+
   authState: Observable<{}>;
   user;
   userSubscription: Subscription;
@@ -111,7 +113,12 @@ export class FirebaseAuthService implements OnInit {
 
     if (!doesNotRepeatPostal) {
       this.db.collection('users').doc(this.afAuth.auth.currentUser.uid).update({
-        cities: [...this.user.cities, { postal: zipcode, city: location.city, state: location.state }]
+        cities:
+         [...this.user.cities,
+         { postal: zipcode,
+          city: location.city,
+          state: location.state,
+          bgColor: this.bgColorsCities[Math.floor(Math.random() * Math.floor(this.bgColorsCities.length))] }]
       }).then(res => this.toastrService.success('Citi Saved')
       ).catch(err => console.log('err', err)
       );
