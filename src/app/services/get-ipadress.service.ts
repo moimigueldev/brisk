@@ -59,7 +59,7 @@ export class GetIPAdressService {
   
         data['daily'].data.forEach(el => {
           dailyHighsLows.push({date: new Date(el.time * 1000), high: el.temperatureHigh, low: el.temperatureLow, zipcode: data['postal_code'] })
-          dailyHumWind.push({date: new Date(el.time * 1000), hum: el.humidity * 100, cloudCover: el.cloudCover * 100 })
+          dailyHumWind.push({date: new Date(el.time * 1000), hum: el.humidity * 100, cloudCover: el.cloudCover * 100, zipcode: data['postal_code'] })
           weeklyForcast.push({day: new Date(el.time * 1000) ,summary: el.summary, tempHigh: el.apparentTemperatureHigh, icon: el.icon })
         });
   

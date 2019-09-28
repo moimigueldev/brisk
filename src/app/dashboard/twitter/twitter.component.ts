@@ -21,26 +21,20 @@ export class TwitterComponent implements OnInit {
   };
   chartDatasets = [];
   chartLabels = [];
-  zipcode;
+
 
   constructor(
-    private weatherService: WeatherService,
-    private fas: FirebaseAuthService,
-    private route: ActivatedRoute 
+    private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
     this.humCloudSubscription = this.weatherService.humidityWind.subscribe(data => {
       this.humWindData = data;
-      this.zipcode = data[0].zipcode;
       this.showGraph();
-    })
+    });
   }
 
   showGraph() {
-
-
-
     let daysData = [];
     let humData = [];
     let cloudCover = [];
@@ -62,9 +56,7 @@ export class TwitterComponent implements OnInit {
 
   }
 
-  saveCity() {
-    this.fas.addZipcode(this.zipcode || this.route.children[0].params['_value'].zipcode);
-  }
+
 
   ngOnDestroy() {
     this.humCloudSubscription ? this.humCloudSubscription.unsubscribe() : null;

@@ -18,18 +18,17 @@ $colors: #ffcc80, #9fa8da, #e0e0e0, #ffcc80, #212529;
     }
 }
 
-// @for $i from 1 through 3 {
+@media only screen and (max-width: 385px) {
 
-//     .row
+    .card {
 
-//     li:nth-child(#{length($colors)}n+#{$i}) {
-//         background: lighten(nth($colors, random(length($colors))), 20%);
-//     }
-// }
-
-
-// #ffcc80
-// #9fa8da
-// #e0e0e0
-// #ffcc80
-// #212529
+        button {
+            margin-bottom: 5px;
+        }
+    
+        h1 {
+            font-size: 40px;
+           
+        }
+    }
+}

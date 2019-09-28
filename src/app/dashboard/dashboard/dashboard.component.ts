@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { GetIPAdressService } from 'src/app/services/get-ipadress.service';
 import { Subscription } from 'rxjs';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 import { WeatherService } from 'src/app/services/weather.service';
+import { ActivatedRoute } from '@angular/router';
+import { GetIPAdressService } from 'src/app/services/get-ipadress.service';
 
 
 @Component({
@@ -13,14 +14,33 @@ import { WeatherService } from 'src/app/services/weather.service';
 export class DashboardComponent implements OnInit {
 
   userSubscription: Subscription;
+  zipcode;
 
   constructor(
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private fas: FirebaseAuthService,
+    private route: ActivatedRoute,
+    private getIp: GetIPAdressService
   ) { }
+
+  hide = false;
+  hideSubscription: Subscription;
 
   ngOnInit() {
 
+    this.getIp.getIpAddressService();
+
+   this.hideSubscription =  this.weatherService.humidityWind.subscribe(res => {
+      this.zipcode = res[0].zipcode;
+      this.hide = true;
+    });
   }
 
-  // tslint:disable-next-line: use-life-cycle-interface
+  saveCity() {
+    this.fas.addZipcode(this.zipcode || this.route.children[0].params['_value'].zipcode);
+  }
+
+  ngOnDestroy() {
+    this.hideSubscription ? this.hideSubscription.unsubscribe() : null;
+  }
 }

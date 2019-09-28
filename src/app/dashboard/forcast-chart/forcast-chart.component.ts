@@ -70,7 +70,6 @@ export class ForcastChartComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    console.log('onDestroyu dashboard');
     this.userSubscription ? this.userSubscription.unsubscribe() : null ;
     this.HighsLowsSubscription? this.HighsLowsSubscription.unsubscribe() : null ;
   }
