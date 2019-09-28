@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,20 @@ export class GetIPAdressService {
     private http: HttpClient,
     private weatherService: WeatherService,
     private toastrService: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private route: ActivatedRoute
   ) { }
-
+ 
  
   getIpAddressService() {
+    console.log('data',this.route.children[0].children.length)
+
+    if (this.route.children[0].children.length === 1) {
+      return null;
+    } else {
+
+    
+
     this.spinner.show();
     return this.http.get(this.ipAdressURL).subscribe(data => {
       this.searchWeatherSubscription = this.weatherService.getService(data['postal_code']).subscribe(data => {
@@ -64,14 +74,16 @@ export class GetIPAdressService {
         });
   
         this.weatherService.emitWeather(
-          todaysWeather, 
-          dailyHighsLows, 
+          todaysWeather,
+          dailyHighsLows,
           dailyHumWind,
           weeklyForcast
-          )
+          );
         }
-      }) 
-    })
+      });
+    });
+
+  }
   }//end of getIpAdressService()
 
 
