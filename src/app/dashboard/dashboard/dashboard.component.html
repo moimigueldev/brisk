@@ -1,55 +1,15 @@
-<!-- <div class="container">
-
-  <app-search></app-search>
-
-  <div class="row">
-    <div class="col-md-8 mx-auto" id="dashboard-container">
-      <div class="row">
-        <div class="col-12 dashboard-components" id="weather-component">
-          <app-weather></app-weather>
-          <ngx-spinner bdColor="rgba(51,51,51,0)" size="large" color="#58bafb" type="ball-fussion" [fullScreen]="false">
-          </ngx-spinner>
-        </div>
-        <div class="col-12 dashboard-components " id="weekly-forcast">
-          <app-weekly-forcast></app-weekly-forcast>
-        </div>
-        <div class="col-6 dashboard-components">
-          <app-twitter></app-twitter>
-        </div>
-        <div class="col-6 dashboard-components">
-          <app-forcast-chart></app-forcast-chart>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
- 
 <div class="container" >
-
   <app-search></app-search>
   <ngx-spinner bdColor="rgba(51,51,51,0)" size="large" color="#58bafb" type="ball-fussion" [fullScreen]="false">
   </ngx-spinner>
-
   <div class="row" >
     <div class="col-md-6 align-self-center  ">
         <app-weather  ></app-weather>
     </div>
     <div class="col-md-6" >
-        
         <app-forcast-chart></app-forcast-chart>
     </div>
   </div>
   <app-weekly-forcast></app-weekly-forcast >
     <app-twitter  ></app-twitter>
-    <!-- <app-forcast-chart></app-forcast-chart> -->
-  
-
-  
-  <!-- <div class="col-6 dashboard-components">
-          <app-twitter></app-twitter>
-        </div>
-        <div class="col-6 dashboard-components">
-          <app-forcast-chart></app-forcast-chart>
-        </div> -->
 </div>
