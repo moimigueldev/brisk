@@ -29,7 +29,7 @@ export class GetIPAdressService {
  
  
   getIpAddressService() {
-    console.log('data',this.route.children[0].children.length)
+
 
     if (this.route.children[0].children.length === 1) {
       return null;
