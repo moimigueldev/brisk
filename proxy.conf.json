@@ -10,6 +10,12 @@
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true
+    },
+    "/json.geoiplookup.io/*": {
+      "target": "https://json.geoiplookup.io/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
     }
 
   }
