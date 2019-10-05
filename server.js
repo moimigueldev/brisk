@@ -4,7 +4,7 @@ const express = require('express');
     app = express(),
     bodyParser = require('body-parser'),
     cors = require('cors'),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 4000;
 
 // app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist')));
