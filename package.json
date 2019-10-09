@@ -2,8 +2,8 @@
   "name": "brisk",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "ng": "ng serve --proxy-config proxy.conf.json",
+    "start": "nodemon server",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -43,6 +43,7 @@
     "ngx-spinner": "^8.0.3",
     "ngx-toastr": "^10.0.4",
     "nodemon": "^1.19.3",
+    "request": "^2.88.0",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
