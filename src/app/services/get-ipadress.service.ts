@@ -36,7 +36,7 @@ export class GetIPAdressService {
     } else {
 
     this.spinner.show();
-
+      console.log('getting the data')
     return this.http.get('/api/findIp').subscribe(data => console.log('back from the server with: ', data));
 
     // return this.http.get(this.ipAdressURL).subscribe(data => {
