@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {switchMap} from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
@@ -27,7 +27,11 @@ export class WeatherService {
 
   locationToSave: Location;
 
-
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+    })
+  };
  
   constructor(
     private http: HttpClient,
@@ -36,7 +40,7 @@ export class WeatherService {
 
   getService(zipcode: number) {
     if (zipcode) {
-       return this.http.get(`/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`).pipe(
+       return this.http.get(`/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`, {headers:this.httpOptions.headers}).pipe(
         switchMap(res => {
           
 
