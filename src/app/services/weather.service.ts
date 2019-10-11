@@ -88,7 +88,7 @@ export class WeatherService {
   getServiceOnInit(zipcode: number) {
 
     if (zipcode) {
-       return this.http.get(`/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`).pipe(
+       return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`).pipe(
         switchMap(res => {
 
           if (res['status'] === "ZERO_RESULTS") {
@@ -109,7 +109,7 @@ export class WeatherService {
             lon: res['results'][0].geometry.location.lng
           }
 
-          return this.http.get(`/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`)
+          return this.http.get(`https://api.darksky.net/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`)
         }
         })
         
