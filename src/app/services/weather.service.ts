@@ -42,8 +42,6 @@ export class WeatherService {
     if (zipcode) {
        return this.http.get(`/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`, {headers:this.httpOptions.headers}).pipe(
         switchMap(res => {
-          
-
           if (res['status'] === "ZERO_RESULTS" || res['results']["0"].address_components.length <= 1 ) {
             this.spinner.hide();
             return 'invalid';
