@@ -32,11 +32,10 @@ export class WeatherService {
       'Access-Control-Allow-Origin': '*',
     })
   };
- 
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService
-  ) { } 
+  ) { }
 
   getService(zipcode: number) {
     if (zipcode) {
@@ -47,7 +46,7 @@ export class WeatherService {
             return 'invalid';
           } else {
 
-          let location: Location = {
+          const location: Location = {
             city: res['results']["0"].address_components[1].long_name,
             state: res['results']["0"].address_components[2].short_name
           };
@@ -55,18 +54,17 @@ export class WeatherService {
           this.locationToSave = location;
           this.location.next(location);
 
-          let coordinates = {
+          const coordinates = {
             lat: res['results'][0].geometry.location.lat,
             lon: res['results'][0].geometry.location.lng
           };
 
-          return this.http.get(`/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`)
+          return this.http.get(`/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`);
         }
         })
-        
-       )
-    }//end of if
-  }//end of getService()
+       );
+    } // end of if
+  }// end of getService()
 
 
 

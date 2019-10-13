@@ -30,13 +30,15 @@ export class GetIPAdressService {
  
   getIpAddressService() {
 
-
+    console.log('getting ip address');
     if (this.route.children[0].children.length === 1) {
       return null;
     } else {
 
     this.spinner.show();
     return this.http.get('https://json.geoiplookup.io/').subscribe(data => {
+      console.log('data from server ip lookup', data);
+      
       this.searchWeatherSubscription = this.weatherService.getService(data['postal_code']).subscribe(data => {
         if (typeof data === 'string') {
           this.toastrService.error('Invalid Zipcode');
