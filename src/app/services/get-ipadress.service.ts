@@ -36,9 +36,8 @@ export class GetIPAdressService {
     } else {
 
     this.spinner.show();
-    return this.http.get('https://json.geoiplookup.io/').subscribe(data => {
+    return this.http.get('/api/findIp').subscribe(data => {
       console.log('data from server ip lookup', data);
-      
       this.searchWeatherSubscription = this.weatherService.getService(data['postal_code']).subscribe(data => {
         if (typeof data === 'string') {
           this.toastrService.error('Invalid Zipcode');
