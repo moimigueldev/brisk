@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {switchMap} from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
@@ -39,8 +39,12 @@ export class WeatherService {
 
   getService(zipcode: number) {
     if (zipcode) {
-       return this.http.get(`/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`, {headers:this.httpOptions.headers}).pipe(
+
+      const params = new HttpParams().set('zipcode', zipcode.toString());
+
+      return this.http.post(`/api/googlemapslocation/`, {zipcode}).pipe(
         switchMap(res => {
+          console.log('back from the server', res);
           if (res['status'] === "ZERO_RESULTS" || res['results']["0"].address_components.length <= 1 ) {
             this.spinner.hide();
             return 'invalid';
@@ -63,6 +67,33 @@ export class WeatherService {
         }
         })
        );
+      
+      
+      //  return this.http.get(`/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`, {headers:this.httpOptions.headers}).pipe(
+      //   switchMap(res => {
+      //     console.log('back from the server', res)
+      //     if (res['status'] === "ZERO_RESULTS" || res['results']["0"].address_components.length <= 1 ) {
+      //       this.spinner.hide();
+      //       return 'invalid';
+      //     } else {
+
+      //     const location: Location = {
+      //       city: res['results']["0"].address_components[1].long_name,
+      //       state: res['results']["0"].address_components[2].short_name
+      //     };
+
+      //     this.locationToSave = location;
+      //     this.location.next(location);
+
+      //     const coordinates = {
+      //       lat: res['results'][0].geometry.location.lat,
+      //       lon: res['results'][0].geometry.location.lng
+      //     };
+
+      //     return this.http.get(`/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`);
+      //   }
+      //   })
+      //  );
     } // end of if
   }// end of getService()
 
