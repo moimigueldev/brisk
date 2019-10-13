@@ -1,0 +1,49 @@
+[debug] [2019-10-13T21:22:05.934Z] ----------------------------------------------------------------------
+[debug] [2019-10-13T21:22:05.936Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Moi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-10-13T21:22:05.936Z] CLI Version:   7.4.0
+[debug] [2019-10-13T21:22:05.936Z] Platform:      win32
+[debug] [2019-10-13T21:22:05.936Z] Node Version:  v10.16.3
+[debug] [2019-10-13T21:22:05.937Z] Time:          Sun Oct 13 2019 16:22:05 GMT-0500 (Central Daylight Time)
+[debug] [2019-10-13T21:22:05.937Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-10-13T21:22:05.948Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-10-13T21:22:05.948Z] > authorizing via signed-in user
+[debug] [2019-10-13T21:22:05.948Z] [iam] checking project brisk-94282 for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-10-13T21:22:05.949Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-10-13T21:22:05.949Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-10-13T21:22:06.433Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-13T21:22:06.442Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/brisk-94282:testIamPermissions  
+
+[debug] [2019-10-13T21:22:07.063Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-13T21:22:07.065Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/brisk-94282  
+ 
+[debug] [2019-10-13T21:22:07.627Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'brisk-94282'...
+[info] 
+[info] i  deploying firestore, hosting
+[info] i  firestore: checking firestore.rules for compilation errors...
+[info] i  firestore: reading indexes from firestore.indexes.json...
+[debug] [2019-10-13T21:22:07.636Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/brisk-94282:test  
+
+[debug] [2019-10-13T21:22:08.371Z] <<< HTTP RESPONSE 200
+[info] +  firestore: rules file firestore.rules compiled successfully
+[debug] [2019-10-13T21:22:08.373Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/brisk-94282/versions  
+
+[debug] [2019-10-13T21:22:09.863Z] <<< HTTP RESPONSE 200
+[info] i  firestore: uploading rules firestore.rules...
+[debug] [2019-10-13T21:22:09.865Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/brisk-94282/rulesets  
+
+[debug] [2019-10-13T21:22:09.866Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/brisk-94282/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2019-10-13T21:22:10.564Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-13T21:22:10.564Z] [rules] created ruleset projects/brisk-94282/rulesets/efdb233a-aaad-4fe5-988e-fc3ade677c10
+[debug] [2019-10-13T21:22:10.579Z] <<< HTTP RESPONSE 200
+[debug] [2019-10-13T21:22:10.580Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/brisk-94282/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2019-10-13T21:22:11.151Z] <<< HTTP RESPONSE 200
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully
+[info] i  hosting[brisk-94282]: beginning deploy...
+[info] i  hosting[brisk-94282]: found 68 files in dist
+[debug] [2019-10-13T21:22:11.172Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined

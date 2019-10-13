@@ -7,7 +7,8 @@ const express = require('express');
     port = process.env.PORT || 3000;
 
 const findIp = require('./routes/get-ip'),
-    googlemapslocation = require('./routes/googlemaps-location');      
+    googlemapslocation = require('./routes/googlemaps-location'),
+    forecast = require('./routes/forecast');
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -21,6 +22,7 @@ const index = require('./routes/index');
 app.use('/', index);
 app.use('/api/findIp', findIp);
 app.use('/api/googlemapslocation/', googlemapslocation);
+app.use('/api/forecast/', forecast);
 
 app.listen(port, () => {
     console.log(`listening on ports: ${port}`);

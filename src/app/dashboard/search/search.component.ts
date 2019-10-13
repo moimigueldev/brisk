@@ -48,6 +48,7 @@ export class SearchComponent implements OnInit {
 
     const search = this.searchForm.value.search ? this.searchForm.value.search : this.route.children[0].params['_value'].zipcode;
     this.searchWeatherSubscription = this.weatherService.getService(search).subscribe(data => {
+      console.log('this is the data', data)
       if (typeof data === 'string') {
         this.toastrService.error('Invalid Zipcode');
         this.searchWeatherSubscription.unsubscribe();
