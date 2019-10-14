@@ -11,7 +11,7 @@ const findIp = require('./routes/get-ip'),
     forecast = require('./routes/forecast');
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist/brisk')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
     
