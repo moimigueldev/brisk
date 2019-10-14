@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: 'dashboard', component:DashboardComponent, children:[
     {path: ':zipcode', component:DashboardComponent}
   ]},
+  {path: '**', component: DashboardComponent}
 ];
 
 @NgModule({
