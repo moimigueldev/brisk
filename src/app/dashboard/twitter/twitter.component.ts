@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Subscription } from 'rxjs';
-import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
-import { Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-twitter',

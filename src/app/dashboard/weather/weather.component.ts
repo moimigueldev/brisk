@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterViewChecked, AfterContentChecked} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Subscription } from 'rxjs';
 import { faFan, faTint } from '@fortawesome/free-solid-svg-icons';

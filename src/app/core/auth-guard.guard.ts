@@ -27,7 +27,7 @@ export class AuthGuardGuard implements CanActivate {
           return true;
         } else {
           this.toastrService.warning('Plese Login First');
-          this.router.navigate(['login'])
+          this.router.navigate(['login']);
         }
       })
 
