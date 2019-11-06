@@ -109,7 +109,7 @@ export class FirebaseAuthService implements OnInit {
     const location = this.weatherService.locationToSave;
     const doesNotRepeatPostal = this.user.cities.some(el => {
       return el.postal === zipcode;
-    });
+    }); 
 
     if (!doesNotRepeatPostal) {
       this.db.collection('users').doc(this.afAuth.auth.currentUser.uid).update({
