@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import {switchMap} from 'rxjs/operators'
+import { switchMap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
-import {Location} from '../shared/interfaces/location';
+import { Location } from '../shared/interfaces/location';
 import { CurrentWeather } from '../shared/interfaces/current-weather';
 import { HighsLows } from '../shared/interfaces/highs-lows';
 import { HumidityWind } from '../shared/interfaces/humidity-wind';
@@ -42,33 +42,33 @@ export class WeatherService {
 
       const params = new HttpParams().set('zipcode', zipcode.toString());
 
-      return this.http.post(`/api/googlemapslocation/`, {zipcode}).pipe(
+      return this.http.post(`/api/googlemapslocation/`, { zipcode }).pipe(
         switchMap(res => {
-          if (res['status'] === "ZERO_RESULTS" || res['results']["0"].address_components.length <= 1 ) {
+          if (res['status'] === "ZERO_RESULTS" || res['results']["0"].address_components.length <= 1) {
             this.spinner.hide();
             return 'invalid';
           } else {
 
-          const location: Location = {
-            city: res['results']["0"].address_components[1].long_name,
-            state: res['results']["0"].address_components[2].short_name
-          };
+            const location: Location = {
+              city: res['results']["0"].address_components[1].long_name,
+              state: res['results']["0"].address_components[2].short_name
+            };
 
-          this.locationToSave = location;
-          this.location.next(location);
+            this.locationToSave = location;
+            this.location.next(location);
 
-          const coordinates = {
-            lat: res['results'][0].geometry.location.lat,
-            lon: res['results'][0].geometry.location.lng
-          };
+            const coordinates = {
+              lat: res['results'][0].geometry.location.lat,
+              lon: res['results'][0].geometry.location.lng
+            };
 
 
-          return this.http.post('/api/forecast', {coordinates});
+            return this.http.post('/api/forecast', { coordinates });
 
-          // return this.http.get(`/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`);
-        }
+            // return this.http.get(`/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`);
+          }
         })
-       );
+      );
     } // end of if
   }// end of getService()
 
@@ -80,11 +80,10 @@ export class WeatherService {
     dailyHighsLows: HighsLows[],
     dailyHumWind: HumidityWind[],
     weeklyForcast: WeeklyForcast[],
-    
-    ) {
+
+  ) {
 
     this.spinner.hide();
-
     this.weather.next(todaysWeather);
     this.tempHighsLows.next(dailyHighsLows);
     this.humidityWind.next(dailyHumWind);
@@ -94,32 +93,32 @@ export class WeatherService {
   getServiceOnInit(zipcode: number) {
 
     if (zipcode) {
-       return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`).pipe(
+      return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${this.googleMapsKey}`).pipe(
         switchMap(res => {
 
           if (res['status'] === "ZERO_RESULTS") {
             return 'invalid'
-          }else {
-          
- 
+          } else {
 
-          let location: Location = {
-            city: res['results']["0"].address_components[1].long_name,
-            state: res['results']["0"].address_components[2].short_name
+
+
+            let location: Location = {
+              city: res['results']["0"].address_components[1].long_name,
+              state: res['results']["0"].address_components[2].short_name
+            }
+
+            this.location.next(location)
+
+            let coordinates = {
+              lat: res['results'][0].geometry.location.lat,
+              lon: res['results'][0].geometry.location.lng
+            }
+
+            return this.http.get(`https://api.darksky.net/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`)
           }
-
-           this.location.next(location) 
-
-          let coordinates = {
-            lat: res['results'][0].geometry.location.lat,
-            lon: res['results'][0].geometry.location.lng
-          }
-
-          return this.http.get(`https://api.darksky.net/forecast/${this.darkSkyKey}/${coordinates.lat},${coordinates.lon}`)
-        }
         })
-        
-       )
+
+      )
     }//end of if
   }//end of getService()
 

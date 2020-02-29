@@ -14,6 +14,7 @@ import { GetIPAdressService } from 'src/app/services/get-ipadress.service';
 export class DashboardComponent implements OnInit {
 
   userSubscription: Subscription;
+  zipcodeSubscription: Subscription;
   zipcode;
 
   constructor(
@@ -28,19 +29,31 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getIp.getIpAddressService();
 
-   this.hideSubscription =  this.weatherService.humidityWind.subscribe(res => {
+
+    // this.getIp.getIpAddressService();
+
+    this.hideSubscription = this.weatherService.humidityWind.subscribe(res => {
+
       this.zipcode = res[0].zipcode;
+
       this.hide = true;
     });
+
+    this.zipcodeSubscription = this.getIp.zipCodeSubject.subscribe((data: string) => {
+
+      this.zipcode = data;
+
+    })
   }
 
   saveCity() {
+
     this.fas.addZipcode(this.zipcode || this.route.children[0].params['_value'].zipcode);
   }
 
   ngOnDestroy() {
     this.hideSubscription ? this.hideSubscription.unsubscribe() : null;
+    this.zipcodeSubscription ? this.zipcodeSubscription.unsubscribe() : null;
   }
 }
