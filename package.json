@@ -30,7 +30,7 @@
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.3.1",
     "bourbon": "^5.1.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
